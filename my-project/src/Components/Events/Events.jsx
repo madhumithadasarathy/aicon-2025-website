@@ -119,7 +119,7 @@ export default function Events() {
                     <img
                       src={s.titleImg}
                       alt={s.titleAlt}
-                      className="w-56 sm:w-64 md:w-80 drop-shadow-[0_0_18px_rgba(0,0,0,0.7)]"
+                      className="w-72 sm:w-96 md:w-[28rem] drop-shadow-[0_0_18px_rgba(0,0,0,0.7)]"
                       onError={(e) =>
                         (e.currentTarget.style.display = "none")
                       }
