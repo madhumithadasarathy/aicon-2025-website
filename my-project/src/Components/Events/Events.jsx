@@ -1,84 +1,87 @@
-// src/components/Events.jsx
-import React, { useEffect, useState, useRef } from "react";
-import { motion } from "framer-motion";
-import LocalMoviesIcon from "@mui/icons-material/LocalMovies";
+// src/Components/Events/Events.jsx
+import React, { useState, useEffect, useRef } from "react";
+import { PlayArrow, ArrowBackIos, ArrowForwardIos } from "@mui/icons-material";
+
+const SLIDE_INTERVAL_MS = 8000; // 8s wait time
+const SLIDE_TRANSITION_MS = 800;
 
 const SLIDES = [
   {
-    img: "/events/slide-codeclash.jpg",
+    img: "/events/codeclash.jpg",
     titleImg: "/events/logos/codeclash.png",
     titleAlt: "Code Clash",
     subtitle:
       "Timed trials. Hidden traps. Team up to outsmart the game. Solve the master puzzle, or watch the clock drain your fate.",
-    cta: "#codeclash-trailer",
   },
   {
-    img: "/events/slide-pitch.jpg",
+    img: "/events/pitchit.jpg",
     titleImg: "/events/logos/pitchit.png",
-    titleAlt: "Pitch It or Prompt It",
+    titleAlt: "Pitch It!",
     subtitle:
-      "Posters, logos, and one-minute madness. Turn prompts into pop-culture with AI—fast, bold, and binge-worthy.",
-    cta: "#pitch-trailer",
+      "Sell your vision. Dazzle the crowd. The ultimate pitching battle where only the boldest ideas survive.",
   },
   {
-    img: "/events/slide-debate.jpg",
-    titleImg: "/events/logos/debate.png",
-    titleAlt: "AI Debate Battle",
+    img: "/events/debugit.jpg",
+    titleImg: "/events/logos/debugit.png",
+    titleAlt: "Debug It",
     subtitle:
-      "Pick a side. Wield rhetoric. Or let the machine speak. The academy-core showdown where logic cuts the loudest.",
-    cta: "#debate-trailer",
+      "A tangled web of code errors awaits. Spot them, fix them, and prove your debugging prowess under pressure.",
   },
   {
-    img: "/events/slide-objectify.jpg",
-    titleImg: "/events/logos/objectify.png",
-    titleAlt: "Objectify — Connect & Conquer",
+    img: "/events/quiz.jpg",
+    titleImg: "/events/logos/quiz.png",
+    titleAlt: "Brain Wars",
     subtitle:
-      "Dramatic prompts. Quick minds. Stitch ideas into stories that bite. Every decision writes the next scene.",
-    cta: "#objectify-trailer",
+      "Knowledge is your only weapon. Outsmart, outthink, and outscore in this ultimate battle of wits.",
   },
 ];
-
-const AUTOPLAY_MS = 4500;     // auto-advance delay
-const SLIDE_TRANSITION_MS = 700; // css transition duration
 
 export default function Events() {
   const [index, setIndex] = useState(0);
   const timerRef = useRef(null);
 
-  // Auto-advance
+  // Auto-play with reset
   useEffect(() => {
+    startAutoPlay();
+    return () => stopAutoPlay();
+  }, [index]);
+
+  const startAutoPlay = () => {
+    stopAutoPlay();
     timerRef.current = setInterval(() => {
-      setIndex((i) => (i + 1) % SLIDES.length);
-    }, AUTOPLAY_MS);
-    return () => clearInterval(timerRef.current);
-  }, []);
+      nextSlide();
+    }, SLIDE_INTERVAL_MS);
+  };
+
+  const stopAutoPlay = () => {
+    if (timerRef.current) clearInterval(timerRef.current);
+  };
+
+  const nextSlide = () => {
+    setIndex((prev) => (prev + 1) % SLIDES.length);
+  };
+
+  const prevSlide = () => {
+    setIndex((prev) => (prev - 1 + SLIDES.length) % SLIDES.length);
+  };
 
   return (
-    <section className="w-full min-h-screen bg-black text-white">
-      {/* Title row with MUI cinema icon (no image title) */}
-      <div className="pt-28 pb-6 px-6 md:px-10 text-center">
-        <motion.div
-          className="flex items-center justify-center gap-3"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-        >
-          <LocalMoviesIcon sx={{ fontSize: 36 }} className="text-red-500" />
-          <h1 className="text-3xl md:text-5xl font-bold">Choose Your Show</h1>
-        </motion.div>
-        <motion.p
-          className="mt-2 text-white/80"
-          initial={{ opacity: 0, y: -8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
-        >
+    <div className="min-h-screen bg-black text-white relative">
+      {/* Title Section */}
+      <div className="text-center py-12">
+        <h1 className="text-4xl md:text-5xl font-extrabold flex items-center justify-center gap-3">
+          <span role="img" aria-label="film">
+            🎬
+          </span>
+          Choose Your Show
+        </h1>
+        <p className="mt-3 text-gray-400">
           One spotlight at a time—sit back and let the trailers roll.
-        </motion.p>
+        </p>
       </div>
 
-      {/* ONE-AT-A-TIME CAROUSEL */}
+      {/* Slider */}
       <div className="relative w-full overflow-hidden">
-        {/* Track */}
         <div
           className="flex"
           style={{
@@ -88,89 +91,83 @@ export default function Events() {
           }}
         >
           {SLIDES.map((s, i) => (
-            <article
+            <div
               key={i}
-              className="
-                relative flex-none w-full
-                h-[78vh] md:h-[80vh]
-                rounded-none md:rounded-2xl overflow-hidden
-                border-0 md:border md:border-white/10 bg-white/5
-              "
+              className="relative w-full flex-shrink-0"
+              style={{ flexBasis: `${100 / SLIDES.length}%` }}
             >
               {/* Background image */}
-              <div
-                className="absolute inset-0"
-                style={{
-                  backgroundImage: `url('${s.img}')`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                }}
-                aria-hidden
+              <img
+                src={s.img}
+                alt={s.titleAlt}
+                className="w-full h-[75vh] object-cover"
               />
 
-              {/* Readability overlays */}
-              <div className="absolute inset-0 bg-black/25" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+              {/* Overlays */}
+              <div className="absolute inset-0 z-10 bg-black/30" />
+              <div className="absolute inset-0 z-10 bg-gradient-to-t from-black via-transparent to-transparent" />
 
               {/* Bottom-aligned content */}
-              <div className="absolute inset-0 flex items-end">
-                <div className="w-full p-6 md:p-10">
-                  <div className="max-w-3xl">
-                    {/* Title as image */}
+              <div className="absolute inset-0 z-20 flex items-end">
+                <div className="p-6 md:p-12 max-w-2xl">
+                  {/* Title as image or fallback text */}
+                  {s.titleImg ? (
                     <img
                       src={s.titleImg}
                       alt={s.titleAlt}
-                      className="w-56 sm:w-64 md:w-80 drop-shadow-[0_0_18px_rgba(0,0,0,0.5)]"
+                      className="w-56 sm:w-64 md:w-80 drop-shadow-[0_0_18px_rgba(0,0,0,0.7)]"
+                      onError={(e) =>
+                        (e.currentTarget.style.display = "none")
+                      }
                     />
+                  ) : (
+                    <h2 className="text-3xl md:text-5xl font-bold">
+                      {s.titleAlt}
+                    </h2>
+                  )}
 
-                    {/* Subtitle */}
-                    <p className="mt-3 text-white/85 text-sm md:text-base leading-relaxed">
-                      {s.subtitle}
-                    </p>
+                  {/* Subtitle */}
+                  <p className="mt-3 text-white/90 text-sm md:text-base leading-relaxed drop-shadow-[0_0_8px_rgba(0,0,0,0.9)]">
+                    {s.subtitle}
+                  </p>
 
-                    {/* CTA */}
-                    <a
-                      href={s.cta}
-                      className="
-                        mt-5 inline-flex items-center gap-2
-                        rounded-md bg-[#FF0000] hover:bg-red-400
-                        text-black font-medium px-5 py-2 transition
-                        shadow-[0_0_16px_rgba(255,0,0,0.25)]
-                      "
-                      aria-label={`Watch trailer for ${s.titleAlt}`}
-                    >
-                      {/* Play icon */}
-                      <svg
-                        width="18"
-                        height="18"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        className="translate-y-[1px]"
-                      >
-                        <path d="M8 5v14l11-7L8 5Z" fill="currentColor" />
-                      </svg>
-                      <span>Watch Trailer</span>
-                    </a>
-                  </div>
+                  {/* Button */}
+                  <button className="mt-4 px-6 py-3 bg-red-600 text-white font-semibold rounded flex items-center gap-2 hover:bg-red-700 transition">
+                    <PlayArrow /> Watch Trailer
+                  </button>
                 </div>
               </div>
-            </article>
+            </div>
+          ))}
+        </div>
+
+        {/* Navigation Arrows */}
+        <button
+          onClick={prevSlide}
+          className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/40 text-white p-3 rounded-full z-30 hover:bg-black/70"
+        >
+          <ArrowBackIos />
+        </button>
+        <button
+          onClick={nextSlide}
+          className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/40 text-white p-3 rounded-full z-30 hover:bg-black/70"
+        >
+          <ArrowForwardIos />
+        </button>
+
+        {/* Dots navigation */}
+        <div className="absolute bottom-6 left-0 right-0 flex justify-center gap-2 z-30">
+          {SLIDES.map((_, i) => (
+            <span
+              key={i}
+              onClick={() => setIndex(i)}
+              className={`w-3 h-3 rounded-full cursor-pointer ${
+                i === index ? "bg-red-600" : "bg-gray-400"
+              }`}
+            />
           ))}
         </div>
       </div>
-
-      {/* Optional: tiny dots indicator */}
-      <div className="mt-4 mb-10 flex items-center justify-center gap-2">
-        {SLIDES.map((_, i) => (
-          <button
-            key={i}
-            onClick={() => setIndex(i)}
-            className={`h-2.5 w-2.5 rounded-full transition
-              ${i === index ? "bg-red-500" : "bg-white/30 hover:bg-white/60"}`}
-            aria-label={`Go to slide ${i + 1}`}
-          />
-        ))}
-      </div>
-    </section>
+    </div>
   );
 }
