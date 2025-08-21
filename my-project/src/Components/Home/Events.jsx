@@ -61,7 +61,7 @@ export default function Events() {
         </motion.span>
 
         <motion.img
-          src="/fourevents.png"
+          src="/sixevents.png"
           alt="Events Title"
           className="w-96 md:w-[34rem] mb-4 drop-shadow-lg"
           variants={item}

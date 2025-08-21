@@ -1,12 +1,20 @@
 // src/Components/Events/Events.jsx
 import React, { useState, useEffect, useRef } from "react";
-import { PlayArrow, ArrowBackIos, ArrowForwardIos } from "@mui/icons-material";
+import {
+  PlayArrow,
+  ArrowBackIos,
+  ArrowForwardIos,
+  LocalMovies,
+} from "@mui/icons-material";
+
 import title1 from "./../../../public/event1title.png";
 import title2 from "./../../../public/event2title.png";
 import title3 from "./../../../public/clashfest.png";
-import title4 from "./../../../public/event4title.png";
+import title4 from "./../../../public/connectandconquer.png";
+import title5 from "./../../../public/title5.png";
+import title6 from "./../../../public/paperpresentation.png";
 
-const SLIDE_INTERVAL_MS = 8000; // 8s wait time
+const SLIDE_INTERVAL_MS = 8000;
 const SLIDE_TRANSITION_MS = 800;
 
 const SLIDES = [
@@ -38,13 +46,26 @@ const SLIDES = [
     subtitle:
       "Knowledge is your only weapon. Outsmart, outthink, and outscore in this ultimate battle of wits.",
   },
+  {
+    img: "/moneyheist.jpg",
+    titleImg: title5,
+    titleAlt: "Hack-n-Fun",
+    subtitle:
+      "Red masks. Bold moves. Breach the vaults of code and pull off the perfect digital heist—precision, speed, and nerve.",
+  },
+  {
+    img: "/lucifer.jpg",
+    titleImg: title6,
+    titleAlt: "Paper Presentation",
+    subtitle:
+      "Charisma meets rigor. Command the room with a devilishly sharp narrative and evidence that leaves no doubt.",
+  },
 ];
 
 export default function Events() {
   const [index, setIndex] = useState(0);
   const timerRef = useRef(null);
 
-  // Auto-play with reset
   useEffect(() => {
     startAutoPlay();
     return () => stopAutoPlay();
@@ -61,20 +82,15 @@ export default function Events() {
     if (timerRef.current) clearInterval(timerRef.current);
   };
 
-  const nextSlide = () => {
-    setIndex((prev) => (prev + 1) % SLIDES.length);
-  };
-
-  const prevSlide = () => {
-    setIndex((prev) => (prev - 1 + SLIDES.length) % SLIDES.length);
-  };
+  const nextSlide = () => setIndex((prev) => (prev + 1) % SLIDES.length);
+  const prevSlide = () => setIndex((prev) => (prev - 1 + SLIDES.length) % SLIDES.length);
 
   return (
-    <div className="min-h-screen bg-black text-white relative ">
+    <div className="min-h-screen bg-black text-white relative">
       {/* Title Section */}
-      <div className="text-center py-10 ">
-        <h1 className="text-4xl md:text-5xl font-regular uppercase tracking-widest flex items-center justify-center top-5">
-
+      <div className="text-center py-10">
+        <h1 className="text-4xl md:text-5xl font-regular uppercase tracking-widest flex items-center justify-center gap-3">
+          <LocalMovies className="text-red-500" />
           Choose Your Show
         </h1>
         <p className="mt-3 text-gray-400">
@@ -98,11 +114,11 @@ export default function Events() {
               className="relative w-full flex-shrink-0"
               style={{ flexBasis: `${100 / SLIDES.length}%` }}
             >
-              {/* Background image */}
+              {/* Background image (keep top visible) */}
               <img
                 src={s.img}
                 alt={s.titleAlt}
-                className="w-full h-[75vh] object-cover"
+                className="w-full h-[75vh] object-cover object-top"
               />
 
               {/* Overlays */}
@@ -118,14 +134,10 @@ export default function Events() {
                       src={s.titleImg}
                       alt={s.titleAlt}
                       className="w-72 sm:w-96 md:w-[28rem] drop-shadow-[0_0_18px_rgba(0,0,0,0.7)]"
-                      onError={(e) =>
-                        (e.currentTarget.style.display = "none")
-                      }
+                      onError={(e) => (e.currentTarget.style.display = "none")}
                     />
                   ) : (
-                    <h2 className="text-3xl md:text-5xl font-bold">
-                      {s.titleAlt}
-                    </h2>
+                    <h2 className="text-3xl md:text-5xl font-bold">{s.titleAlt}</h2>
                   )}
 
                   {/* Subtitle */}
