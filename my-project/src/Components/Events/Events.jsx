@@ -1,6 +1,7 @@
 // src/components/Events.jsx
-import React from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { motion } from "framer-motion";
+import LocalMoviesIcon from "@mui/icons-material/LocalMovies";
 
 const SLIDES = [
   {
@@ -37,52 +38,63 @@ const SLIDES = [
   },
 ];
 
+const AUTOPLAY_MS = 4500;     // auto-advance delay
+const SLIDE_TRANSITION_MS = 700; // css transition duration
+
 export default function Events() {
+  const [index, setIndex] = useState(0);
+  const timerRef = useRef(null);
+
+  // Auto-advance
+  useEffect(() => {
+    timerRef.current = setInterval(() => {
+      setIndex((i) => (i + 1) % SLIDES.length);
+    }, AUTOPLAY_MS);
+    return () => clearInterval(timerRef.current);
+  }, []);
+
   return (
     <section className="w-full min-h-screen bg-black text-white">
-      {/* Page title as image */}
-      <div className="pt-28 pb-8 px-6 md:px-10 text-center">
-        <motion.img
-          src="/events/choose-your-show.png"
-          alt="Choose Your Show"
-          className="mx-auto w-[70%] max-w-[720px] md:w-[55%] drop-shadow-[0_0_18px_rgba(255,255,255,0.15)]"
+      {/* Title row with MUI cinema icon (no image title) */}
+      <div className="pt-28 pb-6 px-6 md:px-10 text-center">
+        <motion.div
+          className="flex items-center justify-center gap-3"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
-        />
+          transition={{ duration: 0.6, ease: "easeOut" }}
+        >
+          <LocalMoviesIcon sx={{ fontSize: 36 }} className="text-red-500" />
+          <h1 className="text-3xl md:text-5xl font-bold">Choose Your Show</h1>
+        </motion.div>
         <motion.p
-          className="mt-3 text-white/80"
-          initial={{ opacity: 0, y: -10 }}
+          className="mt-2 text-white/80"
+          initial={{ opacity: 0, y: -8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
         >
-          Swipe across and dive into the trailer for each event.
+          One spotlight at a time—sit back and let the trailers roll.
         </motion.p>
       </div>
 
-      {/* Slider */}
-      <div className="relative">
-        {/* Edge fades */}
-        <div className="pointer-events-none absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-black to-transparent z-10" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-black to-transparent z-10" />
-
+      {/* ONE-AT-A-TIME CAROUSEL */}
+      <div className="relative w-full overflow-hidden">
+        {/* Track */}
         <div
-          className="
-            flex gap-6 px-6 md:px-10 pb-16
-            overflow-x-auto scroll-smooth snap-x snap-mandatory
-          "
-          style={{ scrollbarWidth: "none" }}
+          className="flex"
+          style={{
+            width: `${SLIDES.length * 100}%`,
+            transform: `translateX(-${index * (100 / SLIDES.length)}%)`,
+            transition: `transform ${SLIDE_TRANSITION_MS}ms ease-out`,
+          }}
         >
           {SLIDES.map((s, i) => (
             <article
               key={i}
               className="
-                relative flex-none snap-center
-                w-[92vw] sm:w-[88vw] md:w-[86vw] lg:w-[82vw]
+                relative flex-none w-full
                 h-[78vh] md:h-[80vh]
-                rounded-2xl overflow-hidden
-                border border-white/10 bg-white/5
-                mx-auto
+                rounded-none md:rounded-2xl overflow-hidden
+                border-0 md:border md:border-white/10 bg-white/5
               "
             >
               {/* Background image */}
@@ -98,7 +110,6 @@ export default function Events() {
 
               {/* Readability overlays */}
               <div className="absolute inset-0 bg-black/25" />
-              {/* Strong bottom gradient to anchor text near bottom */}
               <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
 
               {/* Bottom-aligned content */}
@@ -146,6 +157,19 @@ export default function Events() {
             </article>
           ))}
         </div>
+      </div>
+
+      {/* Optional: tiny dots indicator */}
+      <div className="mt-4 mb-10 flex items-center justify-center gap-2">
+        {SLIDES.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setIndex(i)}
+            className={`h-2.5 w-2.5 rounded-full transition
+              ${i === index ? "bg-red-500" : "bg-white/30 hover:bg-white/60"}`}
+            aria-label={`Go to slide ${i + 1}`}
+          />
+        ))}
       </div>
     </section>
   );
