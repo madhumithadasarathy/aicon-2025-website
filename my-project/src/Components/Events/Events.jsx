@@ -7,7 +7,7 @@ export default function Events() {
     <section className="w-full min-h-screen bg-black flex flex-col items-center justify-start pt-32 text-center px-6">
       {/* Title */}
       <motion.h1
-        className="text-4xl md:text-6xl font-bold text-white mb-12"
+        className="text-4xl md:text-6xl font-regular text-white mb-12 uppercase tracking-widest"
         initial={{ opacity: 0, y: -30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
