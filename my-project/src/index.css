@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer utilities {
+  .text-glow-white {
+    text-shadow:
+      0 0 6px rgba(255,255,255,.8),
+      0 0 18px rgba(255,255,255,.45);
+  }
+}
+
+body {
+  @apply font-sans;
+}
