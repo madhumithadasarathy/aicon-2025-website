@@ -12,3 +12,11 @@
 body {
   @apply font-sans;
 }
+
+/* hide scrollbars for the slider (Chrome/Safari/Edge) */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+/* hide for Firefox & old Edge */
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* (optional) make sure the whole page never shows white behind sections */
+html, body { background:#000; }
