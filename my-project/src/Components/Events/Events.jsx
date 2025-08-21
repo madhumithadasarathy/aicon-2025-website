@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { PlayArrow, ArrowBackIos, ArrowForwardIos } from "@mui/icons-material";
 import title1 from "./../../../public/event1title.png";
 import title2 from "./../../../public/event2title.png";
-import title3 from "./../../../public/event3title.png";
+import title3 from "./../../../public/clashfest.png";
 import title4 from "./../../../public/event4title.png";
 
 const SLIDE_INTERVAL_MS = 8000; // 8s wait time
@@ -25,7 +25,7 @@ const SLIDES = [
       "Sell your vision. Dazzle the crowd. The ultimate pitching battle where only the boldest ideas survive.",
   },
   {
-    img: "/event3.jpg",
+    img: "/stevent.jpg",
     titleImg: title3,
     titleAlt: "Debug It",
     subtitle:
@@ -70,13 +70,11 @@ export default function Events() {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white relative">
+    <div className="min-h-screen bg-black text-white relative ">
       {/* Title Section */}
       <div className="text-center py-10 ">
         <h1 className="text-4xl md:text-5xl font-regular uppercase tracking-widest flex items-center justify-center top-5">
-          <span role="img" aria-label="film">
-            🎬
-          </span>
+
           Choose Your Show
         </h1>
         <p className="mt-3 text-gray-400">
