@@ -1,34 +1,37 @@
 // src/Components/Events/Events.jsx
 import React, { useState, useEffect, useRef } from "react";
 import { PlayArrow, ArrowBackIos, ArrowForwardIos } from "@mui/icons-material";
+import title1 from "./../../../public/event1title.png";
+import title2 from "./../../../public/event2title.png";
+
 
 const SLIDE_INTERVAL_MS = 8000; // 8s wait time
 const SLIDE_TRANSITION_MS = 800;
 
 const SLIDES = [
   {
-    img: "/events/codeclash.jpg",
-    titleImg: "/events/logos/codeclash.png",
+    img: "/event1.svg",
+    titleImg: title1,
     titleAlt: "Code Clash",
     subtitle:
       "Timed trials. Hidden traps. Team up to outsmart the game. Solve the master puzzle, or watch the clock drain your fate.",
   },
   {
-    img: "/events/pitchit.jpg",
-    titleImg: "/events/logos/pitchit.png",
+    img: "/event2.svg",
+    titleImg: title2,
     titleAlt: "Pitch It!",
     subtitle:
       "Sell your vision. Dazzle the crowd. The ultimate pitching battle where only the boldest ideas survive.",
   },
   {
-    img: "/events/debugit.jpg",
+    img: "/event3.jpg",
     titleImg: "/events/logos/debugit.png",
     titleAlt: "Debug It",
     subtitle:
       "A tangled web of code errors awaits. Spot them, fix them, and prove your debugging prowess under pressure.",
   },
   {
-    img: "/events/quiz.jpg",
+    img: "/events4.jpg",
     titleImg: "/events/logos/quiz.png",
     titleAlt: "Brain Wars",
     subtitle:
