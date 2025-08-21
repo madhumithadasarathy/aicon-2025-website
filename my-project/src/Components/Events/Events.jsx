@@ -72,8 +72,8 @@ export default function Events() {
   return (
     <div className="min-h-screen bg-black text-white relative">
       {/* Title Section */}
-      <div className="text-center py-12">
-        <h1 className="text-4xl md:text-5xl font-extrabold flex items-center justify-center gap-3">
+      <div className="text-center py-10 ">
+        <h1 className="text-4xl md:text-5xl font-regular uppercase tracking-widest flex items-center justify-center top-5">
           <span role="img" aria-label="film">
             🎬
           </span>
@@ -136,7 +136,7 @@ export default function Events() {
                   </p>
 
                   {/* Button */}
-                  <button className="mt-4 px-6 py-3 bg-red-600 text-white font-semibold rounded flex items-center gap-2 hover:bg-red-700 transition">
+                  <button className="mt-4 px-6 py-3 bg-red-600 text-black font-semibold rounded flex items-center gap-2 hover:bg-red-700 transition">
                     <PlayArrow /> Watch Trailer
                   </button>
                 </div>
