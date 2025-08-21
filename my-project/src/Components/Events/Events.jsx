@@ -1,11 +1,19 @@
-import React from 'react'
+// src/components/Events.jsx
+import React from "react";
+import { motion } from "framer-motion";
 
-function Events() {
+export default function Events() {
   return (
-    <div>
-     hello
-    </div>
-  )
+    <section className="w-full min-h-screen bg-black flex flex-col items-center justify-start pt-32 text-center px-6">
+      {/* Title */}
+      <motion.h1
+        className="text-4xl md:text-6xl font-bold text-white mb-12"
+        initial={{ opacity: 0, y: -30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1 }}
+      >
+        Choose Your Show
+      </motion.h1>
+    </section>
+  );
 }
-
-export default Events
