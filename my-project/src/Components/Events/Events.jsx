@@ -3,7 +3,8 @@ import React, { useState, useEffect, useRef } from "react";
 import { PlayArrow, ArrowBackIos, ArrowForwardIos } from "@mui/icons-material";
 import title1 from "./../../../public/event1title.png";
 import title2 from "./../../../public/event2title.png";
-
+import title3 from "./../../../public/event3title.png";
+import title4 from "./../../../public/event4title.png";
 
 const SLIDE_INTERVAL_MS = 8000; // 8s wait time
 const SLIDE_TRANSITION_MS = 800;
@@ -25,14 +26,14 @@ const SLIDES = [
   },
   {
     img: "/event3.jpg",
-    titleImg: "/events/logos/debugit.png",
+    titleImg: title3,
     titleAlt: "Debug It",
     subtitle:
       "A tangled web of code errors awaits. Spot them, fix them, and prove your debugging prowess under pressure.",
   },
   {
     img: "/events4.jpg",
-    titleImg: "/events/logos/quiz.png",
+    titleImg: title4,
     titleAlt: "Brain Wars",
     subtitle:
       "Knowledge is your only weapon. Outsmart, outthink, and outscore in this ultimate battle of wits.",
