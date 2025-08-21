@@ -1,6 +1,10 @@
 // src/Components/Events/Events.jsx
 import React, { useState, useEffect, useRef } from "react";
-import { PlayArrow, ArrowBackIos, ArrowForwardIos } from "@mui/icons-material";
+import {
+  PlayArrow,
+  ArrowBackIos,
+  ArrowForwardIos,
+} from "@mui/icons-material";
 import { Link, useNavigate } from "react-router-dom";
 
 import title1 from "./../../../public/event1title.png";
@@ -10,8 +14,9 @@ import title4 from "./../../../public/connectandconquer.png";
 import title5 from "./../../../public/title5.png";
 import title6 from "./../../../public/paperpresentation.png";
 
-const SLIDE_INTERVAL_MS = 8000;
-const SLIDE_TRANSITION_MS = 800;
+const SLIDE_INTERVAL_MS = 8000;   // auto-advance wait time
+const SLIDE_TRANSITION_MS = 800;  // slide animation ms
+const SWIPE_THRESHOLD = 50;       // px threshold to trigger swipe
 
 const SLIDES = [
   {
@@ -20,7 +25,7 @@ const SLIDES = [
     titleAlt: "Code Clash",
     subtitle:
       "Timed trials. Hidden traps. Team up to outsmart the game. Solve the master puzzle, or watch the clock drain your fate.",
-    routePath: "/events/code-clash",
+    routePath: "/events/event1",
   },
   {
     img: "/events2.jpg",
@@ -67,31 +72,69 @@ const SLIDES = [
 export default function Events() {
   const [index, setIndex] = useState(0);
   const timerRef = useRef(null);
+  const touchStartX = useRef(0);
+  const touchDeltaX = useRef(0);
+  const isDragging = useRef(false);
   const navigate = useNavigate();
 
+  // ----- Autoplay -----
   useEffect(() => {
-    startAutoPlay();
-    return () => stopAutoPlay();
+    startAuto();
+    return stopAuto;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [index]);
 
-  const startAutoPlay = () => {
-    stopAutoPlay();
+  const startAuto = () => {
+    stopAuto();
     timerRef.current = setInterval(() => {
       nextSlide();
     }, SLIDE_INTERVAL_MS);
   };
 
-  const stopAutoPlay = () => {
+  const stopAuto = () => {
     if (timerRef.current) clearInterval(timerRef.current);
   };
 
-  const nextSlide = () => setIndex((prev) => (prev + 1) % SLIDES.length);
-  const prevSlide = () => setIndex((prev) => (prev - 1 + SLIDES.length) % SLIDES.length);
+  const nextSlide = () => setIndex((p) => (p + 1) % SLIDES.length);
+  const prevSlide = () => setIndex((p) => (p - 1 + SLIDES.length) % SLIDES.length);
+  const goTo = (i) => setIndex(i);
+
+  // ----- Touch swipe handlers -----
+  const onTouchStart = (e) => {
+    stopAuto();
+    isDragging.current = true;
+    touchStartX.current = e.touches[0].clientX;
+    touchDeltaX.current = 0;
+  };
+
+  const onTouchMove = (e) => {
+    if (!isDragging.current) return;
+    const currentX = e.touches[0].clientX;
+    touchDeltaX.current = currentX - touchStartX.current;
+  };
+
+  const onTouchEnd = () => {
+    if (!isDragging.current) return;
+    const delta = touchDeltaX.current;
+    isDragging.current = false;
+
+    if (Math.abs(delta) > SWIPE_THRESHOLD) {
+      if (delta < 0) nextSlide(); // swipe left -> next
+      else prevSlide();           // swipe right -> prev
+    }
+    startAuto();
+  };
 
   return (
     <div className="min-h-screen bg-black text-white relative">
-      {/* Slider only */}
-      <div className="relative w-full overflow-hidden">
+      {/* Slider */}
+      <div
+        className="relative w-full overflow-hidden"
+        onTouchStart={onTouchStart}
+        onTouchMove={onTouchMove}
+        onTouchEnd={onTouchEnd}
+      >
+        {/* Slides track */}
         <div
           className="flex"
           style={{
@@ -106,18 +149,25 @@ export default function Events() {
               className="relative w-full flex-shrink-0"
               style={{ flexBasis: `${100 / SLIDES.length}%` }}
             >
-              {/* Background image - full screen, cover horizontally */}
+              {/* Background image full screen */}
               <img
                 src={s.img}
                 alt={s.titleAlt}
                 className="w-full h-screen object-cover"
               />
 
-              {/* Overlays */}
+              {/* Readability overlays */}
               <div className="absolute inset-0 z-10 bg-black/30" />
               <div className="absolute inset-0 z-10 bg-gradient-to-t from-black via-transparent to-transparent" />
 
-              {/* Bottom-aligned content */}
+              {/* Make the whole slide clickable */}
+              <Link
+                to={s.routePath}
+                className="absolute inset-0 z-15"
+                aria-label={`Open ${s.titleAlt}`}
+              />
+
+              {/* Bottom-aligned content (also includes CTA Link) */}
               <div className="absolute inset-0 z-20 flex items-end">
                 <div className="p-6 md:p-12 max-w-2xl">
                   {s.titleImg ? (
@@ -128,45 +178,39 @@ export default function Events() {
                       onError={(e) => (e.currentTarget.style.display = "none")}
                     />
                   ) : (
-                    <h2 className="text-3xl md:text-5xl font-bold">{s.titleAlt}</h2>
+                    <h2 className="text-3xl md:text-5xl font-bold">
+                      {s.titleAlt}
+                    </h2>
                   )}
 
                   <p className="mt-3 text-white/90 text-sm md:text-base leading-relaxed drop-shadow-[0_0_8px_rgba(0,0,0,0.9)]">
                     {s.subtitle}
                   </p>
 
-                  {/* Route to the event page */}
-                  <button
-                    onClick={() => navigate(s.routePath)}
-                    className="mt-4 px-6 py-3 bg-red-600 text-black font-semibold rounded flex items-center gap-2 hover:bg-red-700 transition"
-                  >
-                    <PlayArrow /> Watch Trailer
-                  </button>
-
-                  {/* If you prefer a <Link>, use this instead:
                   <Link
                     to={s.routePath}
-                    className="inline-flex mt-4 px-6 py-3 bg-red-600 text-black font-semibold rounded items-center gap-2 hover:bg-red-700 transition"
+                    className="mt-4 inline-flex px-6 py-3 bg-red-600 text-black font-semibold rounded items-center gap-2 hover:bg-red-700 transition"
                   >
                     <PlayArrow /> Watch Trailer
                   </Link>
-                  */}
                 </div>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Navigation Arrows */}
+        {/* Navigation Arrows (above slide click layer) */}
         <button
-          onClick={prevSlide}
+          onClick={(e) => { e.stopPropagation(); prevSlide(); }}
           className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/40 text-white p-3 rounded-full z-30 hover:bg-black/70"
+          aria-label="Previous slide"
         >
           <ArrowBackIos />
         </button>
         <button
-          onClick={nextSlide}
+          onClick={(e) => { e.stopPropagation(); nextSlide(); }}
           className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/40 text-white p-3 rounded-full z-30 hover:bg-black/70"
+          aria-label="Next slide"
         >
           <ArrowForwardIos />
         </button>
@@ -174,10 +218,11 @@ export default function Events() {
         {/* Dots navigation */}
         <div className="absolute bottom-6 left-0 right-0 flex justify-center gap-2 z-30">
           {SLIDES.map((_, i) => (
-            <span
+            <button
               key={i}
-              onClick={() => setIndex(i)}
-              className={`w-3 h-3 rounded-full cursor-pointer ${
+              aria-label={`Go to slide ${i + 1}`}
+              onClick={(e) => { e.stopPropagation(); goTo(i); }}
+              className={`w-3 h-3 rounded-full ${
                 i === index ? "bg-red-600" : "bg-gray-400"
               }`}
             />

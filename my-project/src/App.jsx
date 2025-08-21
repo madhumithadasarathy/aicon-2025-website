@@ -57,7 +57,7 @@ export default function App() {
         <Route path="/contact" element={<Contact />} />
 
         {/* event detail routes */}
-        <Route path="/events/code-clash" element={<Event1 />} />
+        <Route path="/events/event1" element={<Event1 />} />
         <Route path="/events/pitch-it" element={<Event2 />} />
         <Route path="/events/debug-it" element={<Event3 />} />
         <Route path="/events/brain-wars" element={<Event4 />} />
