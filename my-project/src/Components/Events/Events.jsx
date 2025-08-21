@@ -1,11 +1,7 @@
 // src/Components/Events/Events.jsx
 import React, { useState, useEffect, useRef } from "react";
-import {
-  PlayArrow,
-  ArrowBackIos,
-  ArrowForwardIos,
-  LocalMovies,
-} from "@mui/icons-material";
+import { PlayArrow, ArrowBackIos, ArrowForwardIos } from "@mui/icons-material";
+import { Link, useNavigate } from "react-router-dom";
 
 import title1 from "./../../../public/event1title.png";
 import title2 from "./../../../public/event2title.png";
@@ -24,13 +20,15 @@ const SLIDES = [
     titleAlt: "Code Clash",
     subtitle:
       "Timed trials. Hidden traps. Team up to outsmart the game. Solve the master puzzle, or watch the clock drain your fate.",
+    routePath: "/events/code-clash",
   },
   {
-    img: "/event2.svg",
+    img: "/events2.jpg",
     titleImg: title2,
     titleAlt: "Pitch It!",
     subtitle:
       "Sell your vision. Dazzle the crowd. The ultimate pitching battle where only the boldest ideas survive.",
+    routePath: "/events/pitch-it",
   },
   {
     img: "/stevent.jpg",
@@ -38,6 +36,7 @@ const SLIDES = [
     titleAlt: "Debug It",
     subtitle:
       "A tangled web of code errors awaits. Spot them, fix them, and prove your debugging prowess under pressure.",
+    routePath: "/events/debug-it",
   },
   {
     img: "/events4.jpg",
@@ -45,6 +44,7 @@ const SLIDES = [
     titleAlt: "Brain Wars",
     subtitle:
       "Knowledge is your only weapon. Outsmart, outthink, and outscore in this ultimate battle of wits.",
+    routePath: "/events/brain-wars",
   },
   {
     img: "/moneyheist.jpg",
@@ -52,6 +52,7 @@ const SLIDES = [
     titleAlt: "Hack-n-Fun",
     subtitle:
       "Red masks. Bold moves. Breach the vaults of code and pull off the perfect digital heist—precision, speed, and nerve.",
+    routePath: "/events/hack-n-fun",
   },
   {
     img: "/lucifer.jpg",
@@ -59,12 +60,14 @@ const SLIDES = [
     titleAlt: "Paper Presentation",
     subtitle:
       "Charisma meets rigor. Command the room with a devilishly sharp narrative and evidence that leaves no doubt.",
+    routePath: "/events/paper-presentation",
   },
 ];
 
 export default function Events() {
   const [index, setIndex] = useState(0);
   const timerRef = useRef(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     startAutoPlay();
@@ -87,18 +90,7 @@ export default function Events() {
 
   return (
     <div className="min-h-screen bg-black text-white relative">
-      {/* Title Section */}
-      <div className="text-center py-10">
-        <h1 className="text-4xl md:text-5xl font-regular uppercase tracking-widest flex items-center justify-center gap-3">
-          <LocalMovies className="text-red-500" />
-          Choose Your Show
-        </h1>
-        <p className="mt-3 text-gray-400">
-          One spotlight at a time—sit back and let the trailers roll.
-        </p>
-      </div>
-
-      {/* Slider */}
+      {/* Slider only */}
       <div className="relative w-full overflow-hidden">
         <div
           className="flex"
@@ -114,11 +106,11 @@ export default function Events() {
               className="relative w-full flex-shrink-0"
               style={{ flexBasis: `${100 / SLIDES.length}%` }}
             >
-              {/* Background image (keep top visible) */}
+              {/* Background image - full screen, cover horizontally */}
               <img
                 src={s.img}
                 alt={s.titleAlt}
-                className="w-full h-[75vh] object-cover object-top"
+                className="w-full h-screen object-cover"
               />
 
               {/* Overlays */}
@@ -128,7 +120,6 @@ export default function Events() {
               {/* Bottom-aligned content */}
               <div className="absolute inset-0 z-20 flex items-end">
                 <div className="p-6 md:p-12 max-w-2xl">
-                  {/* Title as image or fallback text */}
                   {s.titleImg ? (
                     <img
                       src={s.titleImg}
@@ -140,15 +131,26 @@ export default function Events() {
                     <h2 className="text-3xl md:text-5xl font-bold">{s.titleAlt}</h2>
                   )}
 
-                  {/* Subtitle */}
                   <p className="mt-3 text-white/90 text-sm md:text-base leading-relaxed drop-shadow-[0_0_8px_rgba(0,0,0,0.9)]">
                     {s.subtitle}
                   </p>
 
-                  {/* Button */}
-                  <button className="mt-4 px-6 py-3 bg-red-600 text-black font-semibold rounded flex items-center gap-2 hover:bg-red-700 transition">
+                  {/* Route to the event page */}
+                  <button
+                    onClick={() => navigate(s.routePath)}
+                    className="mt-4 px-6 py-3 bg-red-600 text-black font-semibold rounded flex items-center gap-2 hover:bg-red-700 transition"
+                  >
                     <PlayArrow /> Watch Trailer
                   </button>
+
+                  {/* If you prefer a <Link>, use this instead:
+                  <Link
+                    to={s.routePath}
+                    className="inline-flex mt-4 px-6 py-3 bg-red-600 text-black font-semibold rounded items-center gap-2 hover:bg-red-700 transition"
+                  >
+                    <PlayArrow /> Watch Trailer
+                  </Link>
+                  */}
                 </div>
               </div>
             </div>

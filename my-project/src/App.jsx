@@ -1,12 +1,21 @@
+// src/App.jsx
 import React, { useRef, useState } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Header from "./Components/Header/Header";
 
-// pages
+// main pages
 import Home from "./Components/Home/Home";
 import About from "./Components/About/About";
 import Events from "./Components/Events/Events";
 import Contact from "./Components/Contact/Contact";
+
+// event detail pages (you said you already created these)
+import Event1 from "./Components/Events/Event1";
+import Event2 from "./Components/Events/Event2";
+import Event3 from "./Components/Events/Event3";
+import Event4 from "./Components/Events/Event4";
+import Event5 from "./Components/Events/Event5";
+import Event6 from "./Components/Events/Event6";
 
 export default function App() {
   const [showHome, setShowHome] = useState(false);
@@ -41,10 +50,21 @@ export default function App() {
     <>
       <Header />
       <Routes>
+        {/* main pages */}
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/events" element={<Events />} />
         <Route path="/contact" element={<Contact />} />
+
+        {/* event detail routes */}
+        <Route path="/events/code-clash" element={<Event1 />} />
+        <Route path="/events/pitch-it" element={<Event2 />} />
+        <Route path="/events/debug-it" element={<Event3 />} />
+        <Route path="/events/brain-wars" element={<Event4 />} />
+        <Route path="/events/hack-n-fun" element={<Event5 />} />
+        <Route path="/events/paper-presentation" element={<Event6 />} />
+
+        {/* fallback */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </>
