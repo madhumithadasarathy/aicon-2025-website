@@ -42,6 +42,15 @@ export default function Event1() {
           animate="visible"
           variants={fadeUp}
         >
+{/* Event title logo below AICON Originals */}
+<motion.div variants={fadeUp} className="mb-4 text-left">
+  <img
+    src="/codeclashhero.png"
+    alt="Event Title"
+    className="w-[220px] md:w-[300px] ]"
+  />
+</motion.div>
+
           {/* “Stranger Things” style header area */}
           <motion.div
             variants={fadeUp}
@@ -49,6 +58,7 @@ export default function Event1() {
           >
             AICON · Originals
           </motion.div>
+          
 
           {/* Title */}
           <motion.div variants={fadeUp} className="mt-2">
@@ -71,6 +81,7 @@ export default function Event1() {
             <span>•</span>
             <span>1 Event</span>
           </motion.div>
+          
 
           {/* Short synopsis */}
           <motion.p
@@ -192,13 +203,13 @@ export default function Event1() {
     whileInView="visible"
     viewport={{ once: true, amount: 0.35 }}
     variants={fadeUp}
-    className="relative z-10 px-6 pt-10 md:pt-10 max-w-3xl"
+    className="relative z-10 px-6 pt-12 md:pt-20"
   >
     <h2 className="text-4xl md:text-6xl font-regular uppercase tracking-widest text-white drop-shadow-lg">
       Final Master Puzzle
     </h2>
-    <p className="mt-2 text-white/85 text-sm md:text-md leading-relaxed">
-      A combined coding + logical riddle, solvable only with the hints earned by your teammates. Will your team
+    <p className="mt-2 text-white/85 text-sm md:text-md leading-relaxed max-w-3xl">
+      A combined coding + logical riddle, solvable only with the hints. Will your team
       unlock victory or collapse under the curse?
     </p>
   </motion.div>
@@ -269,32 +280,53 @@ export default function Event1() {
 
 
       {/* ===== REGISTER NOW ===== */}
-<section className="relative w-full min-h-screen flex flex-col items-center justify-center text-center overflow-hidden bg-black">
-  {/* Glowing mist / particles */}
-  <div className="absolute inset-0 bg-gradient-radial from-red-800/30 via-black/70 to-black pointer-events-none" />
-  <div className="absolute inset-0">
-    <div className="w-full h-full bg-[url('/particles.png')] bg-center bg-no-repeat bg-cover opacity-20 animate-pulse-slow pointer-events-none" />
-  </div>
+<section
+  className="relative w-full min-h-screen flex flex-col items-center justify-center text-center overflow-hidden"
+  aria-label="Code Clash Register Section"
+>
+  {/* Background Image */}
+  <div
+    className="absolute inset-0"
+    style={{
+      backgroundImage: "url('/registrationbg.jpg')",
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+    }}
+  />
+  
+  {/* Dark overlay */}
+  <div className="absolute inset-0 bg-black/70" />
 
   {/* Content */}
   <div className="relative z-10 px-6">
-    <h2 className="text-5xl md:text-6xl font-extrabold text-white drop-shadow-[0_0_20px_rgba(255,0,0,0.5)] mb-8">
-      Ready to Enter the Upside Down?
+    {/* Small top label */}
+    <div className="text-sm tracking-widest uppercase text-white/70 mb-4">
+      AICON · ORIGINALS
+    </div>
+
+    {/* Main Heading */}
+    <h2 className="text-5xl md:text-6xl font-extrabold text-white drop-shadow-lg mb-4">
+      Stranger Things Lie Ahead
     </h2>
-    <p className="text-white/75 text-lg md:text-xl mb-12 max-w-2xl mx-auto">
-      Rally your team, solve the puzzles, and escape the shadows. Only the fastest and smartest will conquer Code Clash!
+
+    {/* Subtitle */}
+    <p className="text-white/75 text-lg md:text-xl mb-8 max-w-2xl mx-auto">
+      Rally your team, face the puzzles, and survive the shadows of the Upside Down. Only the cleverest will escape Code Clash victorious.
     </p>
+
+    {/* Register Button */}
     <a
       href="https://forms.gle/A8d1PQQZxcicxMtT6"
       target="_blank"
       rel="noopener noreferrer"
-      className="inline-flex items-center gap-2 px-8 py-4 rounded-lg bg-red-600 hover:bg-red-400 text-black font-semibold text-lg transition shadow-[0_0_25px_rgba(255,0,0,0.5)]"
+      className="inline-flex items-center gap-2 px-8 py-4 rounded-lg bg-red-600 hover:bg-red-400 text-black font-semibold text-lg ]"
     >
       <PlayArrow />
       Register Now
     </a>
   </div>
 </section>
+
 
 
       {/* ===== FOOTER ===== */}
@@ -305,13 +337,19 @@ export default function Event1() {
   );
 }
 
-/* Reusable Chapter Component */
 function Chapter({ number, title, text, image, reverse }) {
   // Map the numbers to image paths
   const chapterImages = {
     "01": "/01.png",
     "02": "/02.png",
     "03": "/03.png",
+  };
+
+  // Stranger Things–themed episode names
+  const episodeNames = {
+    "01": "The Bug in the Basement",
+    "02": "Mind Flayer’s Maze",
+    "03": "Code of the Upside Down",
   };
 
   return (
@@ -333,7 +371,7 @@ function Chapter({ number, title, text, image, reverse }) {
           Chapter
         </motion.span>
 
-        {/* Replace number text with image */}
+        {/* Chapter number image */}
         <motion.div variants={fadeUp} custom={0.05} className="mb-3">
           <img
             src={chapterImages[number]}
@@ -400,14 +438,16 @@ function Chapter({ number, title, text, image, reverse }) {
               backgroundPosition: "center",
             }}
           />
-          <div className="absolute top-3 left-4 text-white/90 text-sm font-medium">
-            Code Clash
+          {/* Episode Name overlay */}
+          <div className="absolute top-3 left-4 text-white/90 text-sm md:text-base font-medium">
+            {episodeNames[number]}
           </div>
         </div>
       </motion.article>
     </section>
   );
 }
+
 
 
 
