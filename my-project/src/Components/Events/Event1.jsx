@@ -17,7 +17,7 @@ export default function Event1() {
     <main className="bg-black text-white min-h-screen font-poppins">
       {/* ===== HERO ===== */}
       <section
-        className="relative w-full h-[78vh] md:h-[86vh] overflow-hidden"
+        className="relative w-full h-screen overflow-hidden"
         aria-label="Code Clash Hero"
       >
         {/* BG */}
@@ -33,15 +33,15 @@ export default function Event1() {
         <div className="absolute inset-0 bg-gradient-to-tr from-black via-black/50 to-red-900/30 pointer-events-none" />
         <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent pointer-events-none" />
 
-        {/* CONTENT LEFT → bottom-left */}
+        {/* CONTENT pinned bottom-left */}
         <div className="relative z-10 h-full max-w-6xl mx-auto px-6 md:px-10 flex items-end pb-16">
           <motion.div
-            className="max-w-xl"
+            className="max-w-xl text-left"
             initial="hidden"
             animate="visible"
             variants={fadeUp}
           >
-            {/* “Stranger Things” style header area */}
+            {/* Header area */}
             <motion.div
               variants={fadeUp}
               className="text-sm tracking-widest uppercase text-white/85"
@@ -49,7 +49,7 @@ export default function Event1() {
               AICON · Originals
             </motion.div>
 
-            {/* Title */}
+            {/* Title logo */}
             <motion.div variants={fadeUp} className="mt-2">
               <img
                 src="/event1-logo.png"
@@ -59,7 +59,7 @@ export default function Event1() {
               />
             </motion.div>
 
-            {/* Meta row */}
+            {/* Meta */}
             <motion.div
               variants={fadeUp}
               className="mt-3 flex items-center gap-3 text-white/80 text-xs md:text-sm"
@@ -71,7 +71,7 @@ export default function Event1() {
               <span>1 Event</span>
             </motion.div>
 
-            {/* Short synopsis */}
+            {/* Synopsis */}
             <motion.p
               variants={fadeUp}
               className="mt-4 text-white/90 text-sm md:text-base leading-relaxed"
@@ -108,12 +108,9 @@ export default function Event1() {
         </div>
       </section>
 
-      {/* subtle blend divider */}
-
-
       {/* ===== CHAPTER 01 ===== */}
       <Chapter
-        number="01"
+        numberImg="/01.png"
         title="Debugging Sprint"
         text="Player 1 faces a bug-infested snippet of code. Speed and accuracy are
         key—every second counts, and one mistake could cost the entire team."
@@ -123,21 +120,21 @@ export default function Event1() {
 
       <Divider />
 
-      {/* ===== CHAPTER 02 ===== */}
+      {/* ===== CHAPTER 02 (flipped) ===== */}
       <Chapter
-        number="02"
+        numberImg="/02.png"
         title="Logic Gauntlet"
         text="Player 2 encounters a mind-bending logic puzzle. Pattern recognition
         and quick thinking will shape the path for the squad."
         image="/event1-card2.jpg"
-        reverse={true} // 👉 this flips image left, text right
+        reverse={true} // image left, text right
       />
 
       <Divider />
 
       {/* ===== CHAPTER 03 ===== */}
       <Chapter
-        number="03"
+        numberImg="/03.png"
         title="Algorithm Arena"
         text="Player 3 dives into an SQL query or algorithm task. Only efficiency
         and clear reasoning will bring back the final clues."
@@ -199,7 +196,7 @@ export default function Event1() {
 }
 
 /* Reusable Chapter Component */
-function Chapter({ number, title, text, image, reverse }) {
+function Chapter({ numberImg, title, text, image, reverse }) {
   return (
     <section className="max-w-6xl mx-auto px-6 md:px-10 grid md:grid-cols-2 gap-8 md:gap-12 mb-16">
       {/* Text */}
@@ -218,13 +215,14 @@ function Chapter({ number, title, text, image, reverse }) {
         >
           Chapter
         </motion.span>
-        <motion.h3
-          variants={fadeUp}
-          custom={0.1}
-          className="text-5xl md:text-6xl font-extrabold text-white drop-shadow-[0_0_18px_rgba(255,0,0,0.25)]"
-        >
-          {number}
-        </motion.h3>
+        {/* Number replaced with image */}
+        <motion.div variants={fadeUp} custom={0.1} className="mt-2">
+          <img
+            src={numberImg}
+            alt="Chapter Number"
+            className="w-20 md:w-28 drop-shadow-[0_0_18px_rgba(255,0,0,0.25)]"
+          />
+        </motion.div>
         <motion.h4
           variants={fadeUp}
           custom={0.15}
