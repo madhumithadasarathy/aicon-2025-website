@@ -120,7 +120,7 @@ export default function Event1() {
               <Close className="text-white" />
             </button>
             <iframe
-              src="/event1-poster.pdf"
+              src="/codeclash.pdf"
               title="Event Poster"
               className="w-full h-full"
               frameBorder="0"
@@ -163,100 +163,110 @@ export default function Event1() {
         reverse={false}
       />
 
-      {/* ===== MASTER PUZZLE ===== */}
-      <section className="relative w-full min-h-screen flex items-start justify-center text-center overflow-hidden">
-        {/* Background Image */}
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: "url('/event1-master.jpg')",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
+{/* ===== MASTER PUZZLE ===== */}
+<section className="relative w-full min-h-screen flex items-start justify-center text-center overflow-hidden">
+  {/* Vignette gradient behind */}
+  <div
+    className="absolute inset-0 pointer-events-none"
+    style={{
+      background: `radial-gradient(circle at center, rgba(139,0,0,0.6) 0%, rgba(0,0,0,0.95) 100%)`,
+    }}
+  />
+
+  {/* Background Image on top of gradient */}
+  <div
+    className="absolute inset-0"
+    style={{
+      backgroundImage: "url('/event1-master.svg')",
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+    }}
+  />
+
+  {/* Dark overlay to enhance readability */}
+
+
+  {/* Content */}
+  <motion.div
+    initial="hidden"
+    whileInView="visible"
+    viewport={{ once: true, amount: 0.35 }}
+    variants={fadeUp}
+    className="relative z-10 px-6 pt-10 md:pt-10 max-w-3xl"
+  >
+    <h2 className="text-4xl md:text-6xl font-regular uppercase tracking-widest text-white drop-shadow-lg">
+      Final Master Puzzle
+    </h2>
+    <p className="mt-2 text-white/85 text-sm md:text-md leading-relaxed">
+      A combined coding + logical riddle, solvable only with the hints earned by your teammates. Will your team
+      unlock victory or collapse under the curse?
+    </p>
+  </motion.div>
+</section>
+
+
+{/* ===== RULES SECTION ===== */}
+<section className="min-h-screen py-16 bg-black flex items-center">
+  <div className="max-w-6xl mx-auto px-6 text-center">
+    {/* Main Title */}
+<h2 className="text-4xl md:text-5xl font-regular uppercase tracking-widest mb-2 drop-shadow-lg text-red-600">
+  <span className = "text-white ">Enter the</span> Upside Down
+</h2>
+{/* Small Subtitle */}
+<p className="text-white/75 text-md md:text-md mb-12">
+  Venture into the shadowy realms of Code Clash, follow these cryptic rules or risk being lost to the void.
+</p>
+
+    {/* Cards Row */}
+    <div className="grid md:grid-cols-3 gap-12">
+      {/* Rule 1 */}
+      <div className="bg-zinc-900/50 p-6 rounded-xl border border-red-600/40 hover:scale-105 transition-transform shadow-lg">
+        <img
+          src="/rule1.jpg"
+          alt="Team of 4"
+          className="w-full h-48 object-cover rounded-lg mb-4"
         />
-        {/* Dark overlay */}
-        <div className="absolute inset-0 bg-black/70" />
-        {/* Content */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.35 }}
-          variants={fadeUp}
-          className="relative z-10 max-w-3xl px-6 pt-24 md:pt-32"
-        >
-          <h2 className="text-5xl md:text-6xl font-extrabold text-white drop-shadow-lg">
-            Final Master Puzzle
-          </h2>
-          <p className="mt-4 text-white/85 text-lg md:text-xl leading-relaxed">
-            The ultimate showdown awaits. A combined coding + logical riddle,
-            solvable only with the hints earned by your teammates. Will your team
-            unlock victory—or collapse under the curse?
-          </p>
-        </motion.div>
-      </section>
+        <h3 className="text-2xl font-semibold text-red-400 mb-2">
+          Team of 4
+        </h3>
+        <p className="text-white/85 text-sm leading-relaxed">
+          Three players navigate the coding labyrinth to earn precious hint cards, while the fourth wields these clues to conquer the final master puzzle.
+        </p>
+      </div>
 
-      {/* ===== RULES (Moved after Master Puzzle) ===== */}
-      {/* ===== RULES SECTION ===== */}
-      <section className="py-16 bg-black">
-        <div className="max-w-6xl mx-auto px-6 text-center">
-          {/* Main Title */}
-          <h2 className="text-4xl md:text-5xl font-extrabold mb-2 drop-shadow-lg text-red-600">
-            Rules of the Game
-          </h2>
-          {/* Small Subtitle */}
-          <p className="text-white/75 text-lg md:text-xl mb-12">
-            Dare to enter the Upside Down of Code Clash – heed these commandments to survive.
-          </p>
+      {/* Rule 2 */}
+      <div className="bg-zinc-900/50 p-6 rounded-xl border border-red-600/40 hover:scale-105 transition-transform shadow-lg">
+        <img
+          src="/rule2.jpg"
+          alt="Bring Laptop"
+          className="w-full h-48 object-cover rounded-lg mb-4"
+        />
+        <h3 className="text-2xl font-semibold text-red-400 mb-2">
+          Bring Your Gear
+        </h3>
+        <p className="text-white/85 text-sm leading-relaxed">
+          Every participant must bring their laptop and charger—only mortal tools can pierce the digital void.
+        </p>
+      </div>
 
-          {/* Cards Row */}
-          <div className="grid md:grid-cols-3 gap-12">
-            {/* Rule 1 */}
-            <div className="bg-zinc-900/50 p-6 rounded-xl border border-red-600/40 hover:scale-105 transition-transform shadow-lg">
-              <img
-                src="/rule1.jpg"
-                alt="Team of 4"
-                className="w-full h-48 object-cover rounded-lg mb-4"
-              />
-              <h3 className="text-2xl font-semibold text-red-400 mb-2">
-                Team of 4
-              </h3>
-              <p className="text-white/85 text-sm leading-relaxed">
-                Three players navigate the coding labyrinth to earn precious hint cards, while the fourth wields these clues to conquer the final master puzzle.
-              </p>
-            </div>
+      {/* Rule 3 */}
+      <div className="bg-zinc-900/50 p-6 rounded-xl border border-red-600/40 hover:scale-105 transition-transform shadow-lg">
+        <img
+          src="/rule3.jpg"
+          alt="Speed & Accuracy"
+          className="w-full h-48 object-cover rounded-lg mb-4"
+        />
+        <h3 className="text-2xl font-semibold text-red-400 mb-2">
+          Speed & Strategy
+        </h3>
+        <p className="text-white/85 text-sm leading-relaxed">
+          Your pace, precision, and clever use of hints determine whether your squad survives or vanishes into the Upside Down.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
 
-            {/* Rule 2 */}
-            <div className="bg-zinc-900/50 p-6 rounded-xl border border-red-600/40 hover:scale-105 transition-transform shadow-lg">
-              <img
-                src="/rule2.jpg"
-                alt="Bring Laptop"
-                className="w-full h-48 object-cover rounded-lg mb-4"
-              />
-              <h3 className="text-2xl font-semibold text-red-400 mb-2">
-                Bring Your Gear
-              </h3>
-              <p className="text-white/85 text-sm leading-relaxed">
-                Every participant must bring their laptop and charger—only mortal tools can pierce the digital void.
-              </p>
-            </div>
-
-            {/* Rule 3 */}
-            <div className="bg-zinc-900/50 p-6 rounded-xl border border-red-600/40 hover:scale-105 transition-transform shadow-lg">
-              <img
-                src="/rule3.jpg"
-                alt="Speed & Accuracy"
-                className="w-full h-48 object-cover rounded-lg mb-4"
-              />
-              <h3 className="text-2xl font-semibold text-red-400 mb-2">
-                Speed & Strategy
-              </h3>
-              <p className="text-white/85 text-sm leading-relaxed">
-                Your pace, precision, and clever use of hints determine whether your squad survives or vanishes into the Upside Down.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* ===== REGISTER NOW ===== */}
       <section className="py-16 text-center bg-gradient-to-b from-black via-red-900/20 to-black">
@@ -284,8 +294,15 @@ export default function Event1() {
 
 /* Reusable Chapter Component */
 function Chapter({ number, title, text, image, reverse }) {
+  // Map the numbers to image paths
+  const chapterImages = {
+    "01": "/01.png",
+    "02": "/02.png",
+    "03": "/03.png",
+  };
+
   return (
-    <section className="max-w-6xl mx-auto px-6 md:px-10 grid md:grid-cols-2 gap-8 md:gap-12 mb-16">
+    <section className="mx-auto px-6 md:px-10 grid md:grid-cols-2 gap-8 md:gap-12 mb-16 max-w-7xl">
       {/* Text */}
       <motion.div
         initial="hidden"
@@ -298,17 +315,20 @@ function Chapter({ number, title, text, image, reverse }) {
         <motion.span
           variants={fadeUp}
           custom={0}
-          className="uppercase tracking-wider text-white/80"
+          className="uppercase tracking-wider text-white/80 mb-2"
         >
           Chapter
         </motion.span>
-        <motion.h3
-          variants={fadeUp}
-          custom={0.1}
-          className="text-5xl md:text-6xl font-extrabold text-white drop-shadow-[0_0_18px_rgba(255,0,0,0.25)]"
-        >
-          {number}
-        </motion.h3>
+
+        {/* Replace number text with image */}
+        <motion.div variants={fadeUp} custom={0.05} className="mb-3">
+          <img
+            src={chapterImages[number]}
+            alt={`Chapter ${number}`}
+            className="w-20 md:w-28"
+          />
+        </motion.div>
+
         <motion.h4
           variants={fadeUp}
           custom={0.15}
@@ -375,6 +395,8 @@ function Chapter({ number, title, text, image, reverse }) {
     </section>
   );
 }
+
+
 
 /* Divider Component */
 function Divider() {
