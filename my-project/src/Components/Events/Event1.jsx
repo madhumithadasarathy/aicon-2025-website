@@ -109,7 +109,7 @@ export default function Event1() {
       </section>
 
       {/* subtle blend divider */}
-      <div className="h-14 bg-gradient-to-b from-black via-red-900/20 to-transparent" />
+
 
       {/* ===== CHAPTER 01 ===== */}
       <Chapter
