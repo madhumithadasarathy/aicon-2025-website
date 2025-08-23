@@ -94,7 +94,7 @@ export default function Event2() {
           {/* CTA row */}
           <motion.div variants={fadeUp} className="mt-6 flex items-center gap-3">
             <a
-              href="https://forms.gle/A8d1PQQZxcicxMtT6"
+              href="https://forms.gle/wps1G5k2Q5B9whV66"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-md bg-purple-700 hover:bg-purple-500 text-black font-semibold px-5 py-2 transition shadow-[0_0_18px_rgba(128,0,128,0.35)]"
@@ -124,7 +124,7 @@ export default function Event2() {
               <Close className="text-white" />
             </button>
             <iframe
-              src="/pitchit.pdf"
+              src="/pitchprompt.pdf"
               title="Event Poster"
               className="w-full h-full"
               frameBorder="0"
@@ -158,7 +158,7 @@ export default function Event2() {
         number="03"
         title="Pitch Perfect"
         text="Teams present their AI-enhanced startup to judges, impressing with originality, creativity, and delivery."
-        image="/event2-card3.jpg"
+        image="/event2-card3.png"
         reverse={false}
       />
 
@@ -173,9 +173,9 @@ export default function Event2() {
         <div
           className="absolute inset-0"
           style={{
-            backgroundImage: "url('/event2-master.svg')",
+            backgroundImage: "url('/event2-master1.svg')",
             backgroundSize: "cover",
-            backgroundPosition: "center",
+            backgroundPosition: "bottom",
           }}
         />
 
@@ -184,12 +184,12 @@ export default function Event2() {
           whileInView="visible"
           viewport={{ once: true, amount: 0.35 }}
           variants={fadeUp}
-          className="relative z-10 px-6 pt-12 md:pt-20"
+          className="relative z-10 px-6 pt-12 md:pt-20 lg:ml-20"
         >
           <h2 className="text-4xl md:text-6xl font-regular uppercase tracking-widest text-white drop-shadow-lg">
             Final Pitch Stage
           </h2>
-          <p className="mt-2 text-white/85 text-sm md:text-md leading-relaxed max-w-3xl">
+          <p className="mt-2 text-white/85 text-sm md:text-md leading-relaxed max-w-xl">
             Teams must pitch their AI-powered startup concepts with flair and creativity.
             Who will impress the judges and claim ultimate victory?
           </p>
@@ -208,17 +208,17 @@ export default function Event2() {
 
           <div className="grid md:grid-cols-3 gap-12">
             <Rule
-              img="/rule1.jpg"
+              img="/event2-rule1.jpg"
               title="Use AI Wisely"
               desc="Smart AI prompts are key—your idea grows only as much as your prompting skills."
             />
             <Rule
-              img="/rule2.jpg"
+              img="/event2-rule2.jpg"
               title="Time Bound"
               desc="Complete your startup concept within the given time, or face elimination."
             />
             <Rule
-              img="/rule3.jpg"
+              img="/event2-rule3.png"
               title="Pitch Perfect"
               desc="Deliver your pitch with clarity, confidence, and creativity to impress judges."
             />
@@ -249,10 +249,10 @@ export default function Event2() {
             Step Into the AI Lab
           </h2>
           <p className="text-white/75 text-lg md:text-xl mb-8 max-w-2xl mx-auto">
-            Build, prompt, and pitch with AI—your co-founder in this futuristic startup race!
+            Build, prompt, and pitch with AI - your co-founder in this futuristic startup race!
           </p>
           <a
-            href="https://forms.gle/A8d1PQQZxcicxMtT6"
+            href="https://forms.gle/wps1G5k2Q5B9whV66"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-8 py-4 rounded-lg bg-purple-700 hover:bg-purple-500 text-black font-semibold text-lg"
@@ -273,12 +273,6 @@ export default function Event2() {
 
 /* Chapter Component */
 function Chapter({ number, title, text, image, reverse }) {
-  const chapterImages = {
-    "01": "/02-01.png",
-    "02": "/02-02.png",
-    "03": "/02-03.png",
-  };
-
   const episodeNames = {
     "01": "AI Awakens",
     "02": "The Creative Spark",
@@ -287,6 +281,7 @@ function Chapter({ number, title, text, image, reverse }) {
 
   return (
     <section className="mx-auto px-6 md:px-10 grid md:grid-cols-2 gap-8 md:gap-12 mb-16 max-w-7xl">
+      {/* Left side text content */}
       <motion.div
         initial="hidden"
         whileInView="visible"
@@ -303,24 +298,34 @@ function Chapter({ number, title, text, image, reverse }) {
           Chapter
         </motion.span>
 
-        <motion.div variants={fadeUp} custom={0.05} className="mb-3">
-          <img
-            src={chapterImages[number]}
-            alt={`Chapter ${number}`}
-            className="w-20 md:w-28"
-          />
+        {/* Chapter number as text instead of image */}
+        <motion.div
+          variants={fadeUp}
+          custom={0.05}
+          className="mb-3 text-purple-700 text-5xl md:text-6xl font-extrabold "
+        >
+          {number}
         </motion.div>
 
-        <motion.h4 variants={fadeUp} custom={0.15} className="mt-2 text-2xl md:text-3xl font-semibold">
+        <motion.h4
+          variants={fadeUp}
+          custom={0.15}
+          className="mt-2 text-2xl md:text-3xl font-semibold"
+        >
           {title}
         </motion.h4>
-        <motion.p variants={fadeUp} custom={0.2} className="mt-4 text-white/85 leading-relaxed">
+        <motion.p
+          variants={fadeUp}
+          custom={0.2}
+          className="mt-4 text-white/85 leading-relaxed"
+        >
           {text}
         </motion.p>
 
+        {/* Buttons */}
         <motion.div variants={fadeUp} custom={0.3} className="mt-5 flex gap-3">
           <a
-            href="https://forms.gle/A8d1PQQZxcicxMtT6"
+            href="https://forms.gle/wps1G5k2Q5B9whV66"
             target="_blank"
             rel="noopener noreferrer"
             className="px-4 py-1.5 rounded-full bg-white/5 border border-white/15 text-white/85 hover:bg-white/10"
@@ -336,6 +341,7 @@ function Chapter({ number, title, text, image, reverse }) {
         </motion.div>
       </motion.div>
 
+      {/* Right side card */}
       <motion.article
         variants={fadeUp}
         initial="hidden"
@@ -363,6 +369,7 @@ function Chapter({ number, title, text, image, reverse }) {
     </section>
   );
 }
+
 
 /* Divider */
 function Divider() {
