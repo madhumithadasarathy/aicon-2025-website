@@ -28,7 +28,7 @@ export default function Event3() {
           style={{
             backgroundImage: "url('/event3-hero.jpg')",
             backgroundSize: "cover",
-            backgroundPosition: "center",
+            backgroundPosition: "top",
           }}
         />
         {/* red glow + dark overlay */}
@@ -45,7 +45,7 @@ export default function Event3() {
           {/* Event title logo */}
           <motion.div variants={fadeUp} className="mb-4 text-left">
             <img
-              src="/event3title.png"
+              src="/clashfest.png"
               alt="AI Clash Fest"
               className="w-[220px] md:w-[300px]"
             />
@@ -60,12 +60,7 @@ export default function Event3() {
           </motion.div>
 
           {/* Title */}
-          <motion.h1
-            variants={fadeUp}
-            className="mt-2 text-4xl md:text-5xl font-extrabold text-red-600 drop-shadow-[0_0_30px_rgba(255,0,0,0.25)]"
-          >
-            AI Clash Fest
-          </motion.h1>
+
 
           {/* Meta row */}
           <motion.div
@@ -92,7 +87,7 @@ export default function Event3() {
           {/* CTA row */}
           <motion.div variants={fadeUp} className="mt-6 flex items-center gap-3">
             <a
-              href="https://forms.gle/A8d1PQQZxcicxMtT6"
+              href="https://forms.gle/o6L5U8pKzYV5o6b26"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-md bg-red-700 hover:bg-red-500 text-black font-semibold px-5 py-2 transition shadow-[0_0_18px_rgba(255,0,0,0.35)]"
@@ -122,7 +117,7 @@ export default function Event3() {
               <Close className="text-white" />
             </button>
             <iframe
-              src="/aiclashfest.pdf"
+              src="/clashfest.pdf"
               title="Event Poster"
               className="w-full h-full"
               frameBorder="0"
@@ -151,39 +146,47 @@ export default function Event3() {
       />
 
       {/* ===== MASTER ROUND ===== */}
-      <section className="relative w-full min-h-screen flex items-start justify-center text-center overflow-hidden">
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background: `radial-gradient(circle at center, rgba(255,0,0,0.6) 0%, rgba(0,0,0,0.95) 100%)`,
-          }}
-        />
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: "url('/event3-master.svg')",
-            backgroundSize: "cover",
-            backgroundPosition: "bottom",
-          }}
-        />
+<section className="relative w-full min-h-screen flex items-start justify-center text-center overflow-hidden">
+  {/* Red radial overlay */}
+  <div
+    className="absolute inset-0 pointer-events-none"
+    style={{
+      background: `radial-gradient(circle at center, rgba(255,0,0,0.6) 0%, rgba(0,0,0,0.95) 100%)`,
+    }}
+  />
 
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.35 }}
-          variants={fadeUp}
-          className="relative z-10 px-6 pt-12 md:pt-20 lg:ml-20"
-        >
-          <h2 className="text-4xl md:text-6xl font-regular uppercase tracking-widest text-white drop-shadow-lg">
-            Survival Round
-          </h2>
-          <p className="mt-2 text-white/85 text-sm md:text-md leading-relaxed max-w-xl">
-            Only the sharpest teams make it here. With all eyes on you, every
-            argument and idea counts. Will you rise victorious or fall to the
-            game?
-          </p>
-        </motion.div>
-      </section>
+  {/* Background image */}
+  <div
+    className="absolute inset-0"
+    style={{
+      backgroundImage: "url('/event3-card3.jpg')",
+      backgroundSize: "cover",
+      backgroundPosition: "bottom",
+    }}
+  />
+
+  {/* Black overlay on top of bg image */}
+  <div className="absolute inset-0 bg-black opacity-60" />
+
+  {/* Content */}
+  <motion.div
+    initial="hidden"
+    whileInView="visible"
+    viewport={{ once: true, amount: 0.35 }}
+    variants={fadeUp}
+    className="relative z-10 flex flex-col items-center justify-center h-screen px-6 text-center"
+  >
+    <h2 className="text-4xl md:text-6xl font-regular uppercase tracking-widest text-white drop-shadow-lg">
+      Survival Round
+    </h2>
+    <p className="mt-4 text-white/85 text-sm md:text-md leading-relaxed max-w-xl">
+      Only the sharpest teams make it here. With all eyes on you, every
+      argument and idea counts. Will you rise victorious or fall to the
+      game?
+    </p>
+  </motion.div>
+</section>
+
 
       {/* ===== RULES ===== */}
       <section className="min-h-screen py-16 bg-black flex items-center">
@@ -225,7 +228,7 @@ export default function Event3() {
           style={{
             backgroundImage: "url('/registrationbg3.jpg')",
             backgroundSize: "cover",
-            backgroundPosition: "center",
+            backgroundPosition: "top",
           }}
         />
         <div className="absolute inset-0 bg-black/70" />
@@ -238,11 +241,11 @@ export default function Event3() {
             Dare to Play the Game
           </h2>
           <p className="text-white/75 text-lg md:text-xl mb-8 max-w-2xl mx-auto">
-            Enter the arena of AI Clash Fest. Outsmart, outwit, and outlast —
+            Enter the arena of AI Clash Fest. Outsmart, outwit, and outlast 
             or face elimination.
           </p>
           <a
-            href="https://forms.gle/A8d1PQQZxcicxMtT6"
+            href="https://forms.gle/o6L5U8pKzYV5o6b26"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-8 py-4 rounded-lg bg-red-700 hover:bg-red-500 text-black font-semibold text-lg"
