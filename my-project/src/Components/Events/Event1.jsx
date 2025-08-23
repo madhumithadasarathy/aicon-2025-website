@@ -1,7 +1,7 @@
 // src/Components/Events/Event1.jsx
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { PlayArrow } from "@mui/icons-material";
+import { PlayArrow, Close } from "@mui/icons-material";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -13,11 +13,13 @@ const fadeUp = {
 };
 
 export default function Event1() {
+  const [pdfOpen, setPdfOpen] = useState(false);
+
   return (
     <main className="bg-black text-white min-h-screen font-poppins">
       {/* ===== HERO ===== */}
       <section
-        className="relative w-full h-screen overflow-hidden"
+        className="relative w-full min-h-screen overflow-hidden"
         aria-label="Code Clash Hero"
       >
         {/* BG */}
@@ -33,108 +35,127 @@ export default function Event1() {
         <div className="absolute inset-0 bg-gradient-to-tr from-black via-black/50 to-red-900/30 pointer-events-none" />
         <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent pointer-events-none" />
 
-        {/* CONTENT pinned bottom-left */}
-        <div className="relative z-10 h-full max-w-6xl mx-auto px-6 md:px-10 flex items-end pb-16">
+        {/* CONTENT → bottom-left */}
+        <motion.div
+          className="absolute bottom-16 left-6 md:left-10 max-w-xl z-10"
+          initial="hidden"
+          animate="visible"
+          variants={fadeUp}
+        >
+          {/* “Stranger Things” style header area */}
           <motion.div
-            className="max-w-xl text-left"
-            initial="hidden"
-            animate="visible"
             variants={fadeUp}
+            className="text-sm tracking-widest uppercase text-white/85"
           >
-            {/* Header area */}
-            <motion.div
-              variants={fadeUp}
-              className="text-sm tracking-widest uppercase text-white/85"
-            >
-              AICON · Originals
-            </motion.div>
-
-            {/* Title logo */}
-            <motion.div variants={fadeUp} className="mt-2">
-              <img
-                src="/event1-logo.png"
-                alt="Code Clash"
-                className="w-[320px] md:w-[420px] drop-shadow-[0_0_30px_rgba(255,0,0,0.25)]"
-                onError={(e) => (e.currentTarget.style.display = "none")}
-              />
-            </motion.div>
-
-            {/* Meta */}
-            <motion.div
-              variants={fadeUp}
-              className="mt-3 flex items-center gap-3 text-white/80 text-xs md:text-sm"
-            >
-              <span>2025</span>
-              <span>•</span>
-              <span>16+</span>
-              <span>•</span>
-              <span>1 Event</span>
-            </motion.div>
-
-            {/* Synopsis */}
-            <motion.p
-              variants={fadeUp}
-              className="mt-4 text-white/90 text-sm md:text-base leading-relaxed"
-            >
-              Code Clash: Key to Victory is an electrifying strategic tech relay
-              designed to test speed, logic, coding skills, and teamwork. Each
-              team of 4 races against time - your squad’s fate depends on every
-              member.
-            </motion.p>
-
-            {/* CTA row */}
-            <motion.div
-              variants={fadeUp}
-              className="mt-6 flex items-center gap-3"
-            >
-              <a
-                href="https://forms.gle/A8d1PQQZxcicxMtT6"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-md bg-[#FF0000] hover:bg-red-400 text-black font-semibold px-5 py-2 transition shadow-[0_0_18px_rgba(255,0,0,0.35)]"
-              >
-                <PlayArrow />
-                Register
-              </a>
-
-              <a
-                href="#synopsis"
-                className="inline-flex items-center gap-2 rounded-md border border-white/25 hover:border-white/50 text-white font-medium px-5 py-2 bg-white/0 hover:bg-white/10 transition"
-              >
-                More Info
-              </a>
-            </motion.div>
+            AICON · Originals
           </motion.div>
-        </div>
+
+          {/* Title */}
+          <motion.div variants={fadeUp} className="mt-2">
+            <img
+              src="/event1-logo.png"
+              alt="Code Clash"
+              className="w-[320px] md:w-[420px] drop-shadow-[0_0_30px_rgba(255,0,0,0.25)]"
+              onError={(e) => (e.currentTarget.style.display = "none")}
+            />
+          </motion.div>
+
+          {/* Meta row */}
+          <motion.div
+            variants={fadeUp}
+            className="mt-3 flex items-center gap-3 text-white/80 text-xs md:text-sm"
+          >
+            <span>2025</span>
+            <span>•</span>
+            <span>16+</span>
+            <span>•</span>
+            <span>1 Event</span>
+          </motion.div>
+
+          {/* Short synopsis */}
+          <motion.p
+            variants={fadeUp}
+            className="mt-4 text-white/90 text-sm md:text-base leading-relaxed"
+          >
+            Code Clash: Key to Victory is an electrifying strategic tech relay
+            designed to test speed, logic, coding skills, and teamwork. Each
+            team of 4 races against time—your squad’s fate depends on every
+            member.
+          </motion.p>
+
+          {/* CTA row */}
+          <motion.div
+            variants={fadeUp}
+            className="mt-6 flex items-center gap-3"
+          >
+            <a
+              href="https://forms.gle/A8d1PQQZxcicxMtT6"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-md bg-[#FF0000] hover:bg-red-400 text-black font-semibold px-5 py-2 transition shadow-[0_0_18px_rgba(255,0,0,0.35)]"
+            >
+              <PlayArrow />
+              Register
+            </a>
+
+            {/* Open PDF Modal */}
+            <button
+              onClick={() => setPdfOpen(true)}
+              className="inline-flex items-center gap-2 rounded-md border border-white/25 hover:border-white/50 text-white font-medium px-5 py-2 bg-white/0 hover:bg-white/10 transition"
+            >
+              More Info
+            </button>
+          </motion.div>
+        </motion.div>
       </section>
+
+      {/* ===== PDF Modal ===== */}
+      {pdfOpen && (
+        <div className="fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-4">
+          <div className="relative w-full max-w-5xl h-full md:h-[90vh] bg-black rounded-xl overflow-hidden shadow-2xl">
+            <button
+              onClick={() => setPdfOpen(false)}
+              className="absolute top-4 right-4 z-50 p-2 bg-red-600 hover:bg-red-500 rounded-full"
+            >
+              <Close className="text-white" />
+            </button>
+            <iframe
+              src="/event1-poster.pdf"
+              title="Event Poster"
+              className="w-full h-full"
+              frameBorder="0"
+            />
+          </div>
+        </div>
+      )}
 
       {/* ===== CHAPTER 01 ===== */}
       <Chapter
-        numberImg="/01.png"
+        number="01"
         title="Debugging Sprint"
         text="Player 1 faces a bug-infested snippet of code. Speed and accuracy are
-        key, every second counts, and one mistake could cost the entire team."
+        key—every second counts, and one mistake could cost the entire team."
         image="/event1-card1.jpg"
         reverse={false}
       />
 
       <Divider />
 
-      {/* ===== CHAPTER 02 (flipped) ===== */}
+      {/* ===== CHAPTER 02 (Reversed) ===== */}
       <Chapter
-        numberImg="/02.png"
+        number="02"
         title="Logic Gauntlet"
         text="Player 2 encounters a mind-bending logic puzzle. Pattern recognition
         and quick thinking will shape the path for the squad."
         image="/event1-card2.jpg"
-        reverse={true} // image left, text right
+        reverse={true} // flipped
       />
 
       <Divider />
 
       {/* ===== CHAPTER 03 ===== */}
       <Chapter
-        numberImg="/03.png"
+        number="03"
         title="Algorithm Arena"
         text="Player 3 dives into an SQL query or algorithm task. Only efficiency
         and clear reasoning will bring back the final clues."
@@ -142,8 +163,9 @@ export default function Event1() {
         reverse={false}
       />
 
-      {/* Master Puzzle Section */}
-      <section className="relative w-full h-[70vh] flex items-center justify-center text-center overflow-hidden">
+      {/* ===== MASTER PUZZLE ===== */}
+      <section className="relative w-full min-h-screen flex items-start justify-center text-center overflow-hidden">
+        {/* Background Image */}
         <div
           className="absolute inset-0"
           style={{
@@ -152,13 +174,15 @@ export default function Event1() {
             backgroundPosition: "center",
           }}
         />
+        {/* Dark overlay */}
         <div className="absolute inset-0 bg-black/70" />
+        {/* Content */}
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.35 }}
           variants={fadeUp}
-          className="relative z-10 max-w-3xl px-6"
+          className="relative z-10 max-w-3xl px-6 pt-24 md:pt-32"
         >
           <h2 className="text-5xl md:text-6xl font-extrabold text-white drop-shadow-lg">
             Final Master Puzzle
@@ -171,7 +195,70 @@ export default function Event1() {
         </motion.div>
       </section>
 
-      {/* Register Now Section */}
+      {/* ===== RULES (Moved after Master Puzzle) ===== */}
+      {/* ===== RULES SECTION ===== */}
+      <section className="py-16 bg-black">
+        <div className="max-w-6xl mx-auto px-6 text-center">
+          {/* Main Title */}
+          <h2 className="text-4xl md:text-5xl font-extrabold mb-2 drop-shadow-lg text-red-600">
+            Rules of the Game
+          </h2>
+          {/* Small Subtitle */}
+          <p className="text-white/75 text-lg md:text-xl mb-12">
+            Dare to enter the Upside Down of Code Clash – heed these commandments to survive.
+          </p>
+
+          {/* Cards Row */}
+          <div className="grid md:grid-cols-3 gap-12">
+            {/* Rule 1 */}
+            <div className="bg-zinc-900/50 p-6 rounded-xl border border-red-600/40 hover:scale-105 transition-transform shadow-lg">
+              <img
+                src="/rule1.jpg"
+                alt="Team of 4"
+                className="w-full h-48 object-cover rounded-lg mb-4"
+              />
+              <h3 className="text-2xl font-semibold text-red-400 mb-2">
+                Team of 4
+              </h3>
+              <p className="text-white/85 text-sm leading-relaxed">
+                Three players navigate the coding labyrinth to earn precious hint cards, while the fourth wields these clues to conquer the final master puzzle.
+              </p>
+            </div>
+
+            {/* Rule 2 */}
+            <div className="bg-zinc-900/50 p-6 rounded-xl border border-red-600/40 hover:scale-105 transition-transform shadow-lg">
+              <img
+                src="/rule2.jpg"
+                alt="Bring Laptop"
+                className="w-full h-48 object-cover rounded-lg mb-4"
+              />
+              <h3 className="text-2xl font-semibold text-red-400 mb-2">
+                Bring Your Gear
+              </h3>
+              <p className="text-white/85 text-sm leading-relaxed">
+                Every participant must bring their laptop and charger—only mortal tools can pierce the digital void.
+              </p>
+            </div>
+
+            {/* Rule 3 */}
+            <div className="bg-zinc-900/50 p-6 rounded-xl border border-red-600/40 hover:scale-105 transition-transform shadow-lg">
+              <img
+                src="/rule3.jpg"
+                alt="Speed & Accuracy"
+                className="w-full h-48 object-cover rounded-lg mb-4"
+              />
+              <h3 className="text-2xl font-semibold text-red-400 mb-2">
+                Speed & Strategy
+              </h3>
+              <p className="text-white/85 text-sm leading-relaxed">
+                Your pace, precision, and clever use of hints determine whether your squad survives or vanishes into the Upside Down.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== REGISTER NOW ===== */}
       <section className="py-16 text-center bg-gradient-to-b from-black via-red-900/20 to-black">
         <h2 className="text-4xl md:text-5xl font-bold mb-6">
           Ready to Prove Your Team?
@@ -187,7 +274,7 @@ export default function Event1() {
         </a>
       </section>
 
-      {/* FOOTER STRIP */}
+      {/* ===== FOOTER ===== */}
       <div className="py-8 text-center text-xs text-white/50">
         © AICON 2025 · Department of CSE (AIML), Sri Sairam Engineering College
       </div>
@@ -196,7 +283,7 @@ export default function Event1() {
 }
 
 /* Reusable Chapter Component */
-function Chapter({ numberImg, title, text, image, reverse }) {
+function Chapter({ number, title, text, image, reverse }) {
   return (
     <section className="max-w-6xl mx-auto px-6 md:px-10 grid md:grid-cols-2 gap-8 md:gap-12 mb-16">
       {/* Text */}
@@ -215,14 +302,13 @@ function Chapter({ numberImg, title, text, image, reverse }) {
         >
           Chapter
         </motion.span>
-        {/* Number replaced with image */}
-        <motion.div variants={fadeUp} custom={0.1} className="mt-2">
-          <img
-            src={numberImg}
-            alt="Chapter Number"
-            className="w-20 md:w-28 drop-shadow-[0_0_18px_rgba(255,0,0,0.25)]"
-          />
-        </motion.div>
+        <motion.h3
+          variants={fadeUp}
+          custom={0.1}
+          className="text-5xl md:text-6xl font-extrabold text-white drop-shadow-[0_0_18px_rgba(255,0,0,0.25)]"
+        >
+          {number}
+        </motion.h3>
         <motion.h4
           variants={fadeUp}
           custom={0.15}
