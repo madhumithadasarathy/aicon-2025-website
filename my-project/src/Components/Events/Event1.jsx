@@ -33,8 +33,8 @@ export default function Event1() {
         <div className="absolute inset-0 bg-gradient-to-tr from-black via-black/50 to-red-900/30 pointer-events-none" />
         <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent pointer-events-none" />
 
-        {/* CONTENT LEFT */}
-        <div className="relative z-10 h-full max-w-6xl mx-auto px-6 md:px-10 flex items-center">
+        {/* CONTENT LEFT → bottom-left */}
+        <div className="relative z-10 h-full max-w-6xl mx-auto px-6 md:px-10 flex items-end pb-16">
           <motion.div
             className="max-w-xl"
             initial="hidden"
@@ -59,7 +59,9 @@ export default function Event1() {
                   onError={(e) => (e.currentTarget.style.display = "none")}
                 />
               ) : (
-                <h1 className="text-4xl md:text-6xl font-extrabold">Code Clash</h1>
+                <h1 className="text-4xl md:text-6xl font-extrabold">
+                  Code Clash
+                </h1>
               )}
             </motion.div>
 
@@ -87,14 +89,21 @@ export default function Event1() {
             </motion.p>
 
             {/* CTA row */}
-            <motion.div variants={fadeUp} className="mt-6 flex items-center gap-3">
+            <motion.div
+              variants={fadeUp}
+              className="mt-6 flex items-center gap-3"
+            >
+              {/* Modified Play button → Google Form link */}
               <a
-                href="#chapter-01"
+                href="https://forms.gle/A8d1PQQZxcicxMtT6"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-md bg-[#FF0000] hover:bg-red-400 text-black font-semibold px-5 py-2 transition shadow-[0_0_18px_rgba(255,0,0,0.35)]"
               >
                 <PlayArrow />
                 Play
               </a>
+
               <a
                 href="#synopsis"
                 className="inline-flex items-center gap-2 rounded-md border border-white/25 hover:border-white/50 text-white font-medium px-5 py-2 bg-white/0 hover:bg-white/10 transition"
@@ -143,14 +152,18 @@ export default function Event1() {
             className="mt-4 text-white/85 leading-relaxed"
           >
             Each teammate faces a solo gauntlet. Complete challenges to win clues or
-            suffer penalties that echo back to your squad. Your pace powers your team —
+            suffer penalties that echo back to your squad. Your pace powers your team,
             slow feet feed the curse.
           </motion.p>
 
           {/* Tabs like the mock */}
-          <motion.div variants={fadeUp} custom={0.3} className="mt-5 flex gap-3">
+          <motion.div
+            variants={fadeUp}
+            custom={0.3}
+            className="mt-5 flex gap-3"
+          >
             <button className="px-4 py-1.5 rounded-full bg-white/5 border border-white/15 text-white/85 hover:bg-white/10">
-              Beginning
+              Begin
             </button>
             <button className="px-4 py-1.5 rounded-full bg-[#ff0000] text-black font-semibold shadow-[0_0_16px_rgba(255,0,0,0.35)]">
               Synopsis
@@ -256,16 +269,24 @@ export default function Event1() {
             02
           </motion.h3>
 
-          <motion.p variants={fadeUp} custom={0.2} className="mt-4 text-white/85">
-            With all runners back, your squad attempts the **Master Puzzle**. Every
-            clue counts, every penalty stings. One weak link can doom the team — but a
-            perfect relay unlocks the endgame.
+          <motion.p
+            variants={fadeUp}
+            custom={0.2}
+            className="mt-4 text-white/85"
+          >
+            With all runners back, your squad attempts the Master Puzzle. Every clue
+            counts, every penalty stings. One weak link can doom the team — but a perfect
+            relay unlocks the endgame.
           </motion.p>
 
           {/* Tabs */}
-          <motion.div variants={fadeUp} custom={0.3} className="mt-5 flex gap-3">
+          <motion.div
+            variants={fadeUp}
+            custom={0.3}
+            className="mt-5 flex gap-3"
+          >
             <button className="px-4 py-1.5 rounded-full bg-white/5 border border-white/15 text-white/85 hover:bg-white/10">
-              Beginning
+              Begin
             </button>
             <button className="px-4 py-1.5 rounded-full bg-[#ff0000] text-black font-semibold shadow-[0_0_16px_rgba(255,0,0,0.35)]">
               Synopsis
@@ -276,16 +297,6 @@ export default function Event1() {
           </motion.div>
         </motion.div>
       </section>
-
-      {/* ===== OPTIONAL: “More Like” row (placeholder) ===== */}
-      {/* <section className="max-w-6xl mx-auto px-6 md:px-10 pb-16">
-        <h4 className="text-lg md:text-xl font-semibold mb-4">More like Code Clash</h4>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
-          {[1,2,3,4,5,6].map((i)=>(
-            <div key={i} className="aspect-video rounded-md overflow-hidden bg-white/5 border border-white/10" />
-          ))}
-        </div>
-      </section> */}
 
       {/* FOOTER STRIP */}
       <div className="py-8 text-center text-xs text-white/50">
