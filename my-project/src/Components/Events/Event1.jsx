@@ -269,20 +269,33 @@ export default function Event1() {
 
 
       {/* ===== REGISTER NOW ===== */}
-      <section className="py-16 text-center bg-gradient-to-b from-black via-red-900/20 to-black">
-        <h2 className="text-4xl md:text-5xl font-bold mb-6">
-          Ready to Prove Your Team?
-        </h2>
-        <a
-          href="https://forms.gle/A8d1PQQZxcicxMtT6"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 px-8 py-3 rounded-lg bg-[#FF0000] text-black font-semibold text-lg hover:bg-red-400 transition shadow-[0_0_18px_rgba(255,0,0,0.35)]"
-        >
-          <PlayArrow />
-          Register Now
-        </a>
-      </section>
+<section className="relative w-full min-h-screen flex flex-col items-center justify-center text-center overflow-hidden bg-black">
+  {/* Glowing mist / particles */}
+  <div className="absolute inset-0 bg-gradient-radial from-red-800/30 via-black/70 to-black pointer-events-none" />
+  <div className="absolute inset-0">
+    <div className="w-full h-full bg-[url('/particles.png')] bg-center bg-no-repeat bg-cover opacity-20 animate-pulse-slow pointer-events-none" />
+  </div>
+
+  {/* Content */}
+  <div className="relative z-10 px-6">
+    <h2 className="text-5xl md:text-6xl font-extrabold text-white drop-shadow-[0_0_20px_rgba(255,0,0,0.5)] mb-8">
+      Ready to Enter the Upside Down?
+    </h2>
+    <p className="text-white/75 text-lg md:text-xl mb-12 max-w-2xl mx-auto">
+      Rally your team, solve the puzzles, and escape the shadows. Only the fastest and smartest will conquer Code Clash!
+    </p>
+    <a
+      href="https://forms.gle/A8d1PQQZxcicxMtT6"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="inline-flex items-center gap-2 px-8 py-4 rounded-lg bg-red-600 hover:bg-red-400 text-black font-semibold text-lg transition shadow-[0_0_25px_rgba(255,0,0,0.5)]"
+    >
+      <PlayArrow />
+      Register Now
+    </a>
+  </div>
+</section>
+
 
       {/* ===== FOOTER ===== */}
       <div className="py-8 text-center text-xs text-white/50">
