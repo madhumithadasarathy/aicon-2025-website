@@ -78,7 +78,7 @@ export default function Event1() {
             >
               Code Clash: Key to Victory is an electrifying strategic tech relay
               designed to test speed, logic, coding skills, and teamwork. Each
-              team of 4 races against time—your squad’s fate depends on every
+              team of 4 races against time - your squad’s fate depends on every
               member.
             </motion.p>
 
@@ -113,7 +113,7 @@ export default function Event1() {
         numberImg="/01.png"
         title="Debugging Sprint"
         text="Player 1 faces a bug-infested snippet of code. Speed and accuracy are
-        key—every second counts, and one mistake could cost the entire team."
+        key, every second counts, and one mistake could cost the entire team."
         image="/event1-card1.jpg"
         reverse={false}
       />
