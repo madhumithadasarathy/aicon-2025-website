@@ -45,7 +45,7 @@ export default function Event2() {
           {/* Event title logo */}
           <motion.div variants={fadeUp} className="mb-4 text-left">
             <img
-              src="/pitchhero.png"
+              src="/event2title.png"
               alt="Event Title"
               className="w-[220px] md:w-[300px]"
             />
@@ -87,8 +87,8 @@ export default function Event2() {
             className="mt-4 text-white/90 text-sm md:text-base leading-relaxed"
           >
             Pitch It or Prompt It is a creative, futuristic showdown where participants
-            become startup founders—with AI as their co-founder! Build a startup concept
-            using AI tools and pitch in true Shark Tank style. Smart prompts = better ideas!
+            become startup founders with AI as their co-founder! Build a startup concept
+            using AI tools and pitch in true Shark Tank style. Smart prompts means better ideas!
           </motion.p>
 
           {/* CTA row */}
