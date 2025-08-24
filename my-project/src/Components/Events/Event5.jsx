@@ -26,7 +26,7 @@ export default function Event5() {
         <div
           className="absolute inset-0"
           style={{
-            backgroundImage: "url('/moneyheist-hero.jpg')",
+            backgroundImage: "url('/event5-hero.jpg')",
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
@@ -125,7 +125,7 @@ export default function Event5() {
               <Close className="text-white" />
             </button>
             <iframe
-              src="/hacknfun.pdf"
+              src="/HacknFun.pdf"
               title="Event Poster"
               className="w-full h-full"
               frameBorder="0"
@@ -149,7 +149,7 @@ export default function Event5() {
         number="02"
         title="Algo Jam"
         text="Crack quirky puzzles and reconstruct code from output. Logical reasoning and creativity are your weapons."
-        image="/event5-card2.jpg"
+        image="/event5-card3.jpg"
         reverse={true}
       />
 
@@ -159,7 +159,7 @@ export default function Event5() {
         <div
           className="absolute inset-0"
           style={{
-            backgroundImage: "url('/event5-master.jpg')",
+            backgroundImage: "url('/event5-master.jpeg')",
             backgroundSize: "cover",
             backgroundPosition: "top",
           }}
@@ -197,12 +197,12 @@ export default function Event5() {
 
           <div className="grid md:grid-cols-3 gap-12">
             <Rule
-              img="/event5-rule1.jpg"
+              img="/event5-rule1.jpeg"
               title="Debug Fast"
               desc="Errors are your alarms. Fix them quickly to stay ahead."
             />
             <Rule
-              img="/event5-rule2.jpg"
+              img="/event5-card2.jpg"
               title="Think Smart"
               desc="Creativity and logic together open vaults faster than brute force."
             />

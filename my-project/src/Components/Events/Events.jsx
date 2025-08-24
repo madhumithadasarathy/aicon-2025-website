@@ -12,7 +12,7 @@ import title2 from "./../../../public/event2title.png";
 import title3 from "./../../../public/clashfest.png";
 import title4 from "./../../../public/connectandconquer.png";
 import title5 from "./../../../public/title5.png";
-import title6 from "./../../../public/paperpresentation.png";
+import title6 from "./../../../public/eureka.png";
 
 const SLIDE_INTERVAL_MS = 8000;   // auto-advance wait time
 const SLIDE_TRANSITION_MS = 800;  // slide animation ms
