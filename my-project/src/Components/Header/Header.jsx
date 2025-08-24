@@ -69,12 +69,11 @@ export default function Header({ profile }) {
           ))}
           <motion.li variants={itemVariants} custom={4}>
             <a
-              href="https://forms.gle/your-google-form-link"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/brochure.pdf"
+              download="AICON-2025-Brochure.pdf"
               className="px-5 py-2 rounded-full text-sm font-medium bg-[#FF0000] text-black hover:bg-red-400"
             >
-              Register
+              Download Brochure
             </a>
           </motion.li>
         </ul>
@@ -151,13 +150,12 @@ export default function Header({ profile }) {
 
               <motion.li variants={mobileItem} className="p-3">
                 <a
-                  href="https://forms.gle/your-google-form-link"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="/brochure.pdf"
+                  download="AICON-2025-Brochure.pdf"
                   className="block w-full text-center px-5 py-2 rounded-full text-sm font-medium bg-[#FF0000] text-black hover:bg-red-400"
                   onClick={() => setOpen(false)}
                 >
-                  Register
+                  Download Brochure
                 </a>
               </motion.li>
             </motion.ul>
