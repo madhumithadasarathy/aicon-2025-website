@@ -88,7 +88,7 @@ export default function About() {
           {/* Image Left */}
           <div className="md:w-1/2 w-full h-64 md:h-auto">
             <img
-              src="/aicon25.jpg"
+              src="/aicon.jpg"
               alt="AICON'25"
               className="w-full h-full object-cover"
             />
@@ -112,6 +112,59 @@ export default function About() {
           </div>
         </div>
       </motion.div>
+      {/* Core Team Section */}
+{/* Core Team Section */}
+<motion.div
+  initial={{ opacity: 0, y: 50 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 1 }}
+  viewport={{ once: true }}
+  className="w-full mt-16 flex flex-col items-center"
+>
+  {/* Title */}
+  <h2 className="text-3xl md:text-4xl text-white font-regular uppercase tracking-widest mb-8">
+    Core Team
+  </h2>
+
+  {/* Team Grid */}
+  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 w-[92%] md:w-[85%]">
+    {[
+      { name: "Member 1", subtitle: "CSE - Third Year", img: "/member1.jpg" },
+      { name: "Member 2", subtitle: "CSE - Third Year", img: "/member2.jpg" },
+      { name: "Member 3", subtitle: "CSE - Third Year", img: "/member3.jpg" },
+      { name: "Member 4", subtitle: "CSE - Third Year", img: "/member4.jpg" },
+      { name: "Member 5", subtitle: "CSE - Third Year", img: "/member5.jpg" },
+      { name: "Member 6", subtitle: "CSE - Third Year", img: "/member6.jpg" },
+      { name: "Member 7", subtitle: "CSE - Third Year", img: "/member7.jpg" },
+      { name: "Member 8", subtitle: "CSE - Third Year", img: "/member8.jpg" },
+      { name: "Member 9", subtitle: "CSE - Third Year", img: "/member9.jpg" },
+      { name: "Member 10", subtitle: "CSE - Third Year", img: "/member10.jpg" },
+      { name: "Member 11", subtitle: "CSE - Third Year", img: "/member11.jpg" },
+      { name: "Member 12", subtitle: "CSE - Third Year", img: "/member12.jpg" },
+    ].map((member, index) => (
+      <motion.div
+        key={index}
+        whileHover={{ scale: 1.05 }}
+        className="flex flex-col items-center text-center group"
+      >
+        <div className="relative w-40 h-40 md:w-48 md:h-48 overflow-hidden shadow-lg transition-all duration-300 group-hover:shadow-[0_0_20px_rgba(220,38,38,0.8)]">
+          <img
+            src={member.img}
+            alt={member.name}
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <h3 className="mt-4 text-white text-base md:text-lg font-medium">
+          {member.name}
+        </h3>
+        <hr className="w-8 border-t-2 border-red-600 my-1" />
+        <p className="text-gray-300 text-sm">{member.subtitle}</p>
+      </motion.div>
+    ))}
+  </div>
+</motion.div>
+
+
     </div>
   );
 }
