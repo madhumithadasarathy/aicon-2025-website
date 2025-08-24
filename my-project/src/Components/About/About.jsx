@@ -113,34 +113,24 @@ export default function About() {
         </div>
       </motion.div>
       {/* Core Team Section */}
-{/* Core Team Section */}
+      {/* Staff Coordinators Section */}
 <motion.div
   initial={{ opacity: 0, y: 50 }}
   whileInView={{ opacity: 1, y: 0 }}
   transition={{ duration: 1 }}
   viewport={{ once: true }}
-  className="w-full mt-16 flex flex-col items-center"
+  className="w-full mt-16 flex flex-col items-center mb-10"
 >
   {/* Title */}
   <h2 className="text-3xl md:text-4xl text-white font-regular uppercase tracking-widest mb-8">
-    Core Team
+    Staff Coordinators
   </h2>
 
-  {/* Team Grid */}
-  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 w-[92%] md:w-[85%]">
+  {/* Staff Grid */}
+  <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 w-[92%] md:w-[60%]">
     {[
-      { name: "Member 1", subtitle: "CSE - Third Year", img: "/member1.jpg" },
-      { name: "Member 2", subtitle: "CSE - Third Year", img: "/member2.jpg" },
-      { name: "Member 3", subtitle: "CSE - Third Year", img: "/member3.jpg" },
-      { name: "Member 4", subtitle: "CSE - Third Year", img: "/member4.jpg" },
-      { name: "Member 5", subtitle: "CSE - Third Year", img: "/member5.jpg" },
-      { name: "Member 6", subtitle: "CSE - Third Year", img: "/member6.jpg" },
-      { name: "Member 7", subtitle: "CSE - Third Year", img: "/member7.jpg" },
-      { name: "Member 8", subtitle: "CSE - Third Year", img: "/member8.jpg" },
-      { name: "Member 9", subtitle: "CSE - Third Year", img: "/member9.jpg" },
-      { name: "Member 10", subtitle: "CSE - Third Year", img: "/member10.jpg" },
-      { name: "Member 11", subtitle: "CSE - Third Year", img: "/member11.jpg" },
-      { name: "Member 12", subtitle: "CSE - Third Year", img: "/member12.jpg" },
+      { name: "Dr E. Priya", subtitle: "Professor and HOD - CSE(AIML)", img: "/staffcoordinators/hod.jpeg" },
+      { name: "Ms. T. Bharathi", subtitle: "Assistant Professor", img: "/staffcoordinators/bharathimam.jpg" },
     ].map((member, index) => (
       <motion.div
         key={index}
@@ -164,6 +154,148 @@ export default function About() {
   </div>
 </motion.div>
 
+{/* Core Team Section */}
+<motion.div
+  initial={{ opacity: 0, y: 50 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 1 }}
+  viewport={{ once: true }}
+  className="w-full mt-16 flex flex-col items-center mb-10"
+>
+  {/* Title */}
+  <h2 className="text-3xl md:text-4xl text-white font-regular uppercase tracking-widest mb-8">
+    Core Team
+  </h2>
+
+  {/* Team Grid */}
+  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 w-[92%] md:w-[85%]">
+    {[
+      { name: "Atshaya S", subtitle: "Third Year", img: "/coreteam/atshaya.jpg" },
+      { name: "Gengaraj P", subtitle: "Third Year", img: "/coreteam/gengaraj.jpg" },
+      { name: "Mirudhula Devi N", subtitle: "Third Year", img: "/coreteam/mirudhula.jpg" },
+      { name: "Shailendra K R S", subtitle: "Third Year", img: "/coreteam/shail.jpg" },
+      { name: "Bharathwaj S", subtitle: "Fourth Year", img: "/coreteam/bhawaj.jpg" },
+      { name: "Amathul Rifa A", subtitle: "Fourth Year", img: "/coreteam/rifa.jpg" },
+      { name: "Sakthi Sree P", subtitle: "Fourth Year", img: "/coreteam/sak.jpg" },
+      { name: "Madhumitha D", subtitle: "Fourth Year", img: "/coreteam/me.jpg" },
+      { name: "Sachin M P", subtitle: "Fourth Year", img: "/coreteam/sachin.jpg" },
+      { name: "Dinesh Kumar E", subtitle: "Fourth Year", img: "/coreteam/dinesh.jpg" },
+      { name: "Jayachandiran P", subtitle: "Fourth Year", img: "/coreteam/jaya.jpg" },
+      { name: "Venkat Dronadula", subtitle: "Fourth Year", img: "/coreteam/venkat.jpg" },
+    ].map((member, index) => (
+      <motion.div
+        key={index}
+        whileHover={{ scale: 1.05 }}
+        className="flex flex-col items-center text-center group"
+      >
+        <div className="relative w-40 h-40 md:w-48 md:h-48 overflow-hidden shadow-lg transition-all duration-300 group-hover:shadow-[0_0_20px_rgba(220,38,38,0.8)]">
+          <img
+            src={member.img}
+            alt={member.name}
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <h3 className="mt-4 text-white text-base md:text-lg font-medium">
+          {member.name}
+        </h3>
+        <hr className="w-8 border-t-2 border-red-600 my-1" />
+        <p className="text-gray-300 text-sm">{member.subtitle}</p>
+      </motion.div>
+    ))}
+  </div>
+</motion.div>
+{/* Media Team Section */}
+<motion.div
+  initial={{ opacity: 0, y: 50 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 1 }}
+  viewport={{ once: true }}
+  className="w-full mt-16 flex flex-col items-center mb-10"
+>
+  {/* Title */}
+  <h2 className="text-3xl md:text-4xl text-white font-regular uppercase tracking-widest mb-8">
+    Media Team
+  </h2>
+
+  {/* Media Team Grid */}
+  <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 w-[92%] md:w-[60%]">
+    {[
+      { name: "Reena Devi P", subtitle: "Third Year", img: "/mediateam/reena.jpg" },
+      { name: "Devadharshan S", subtitle: "Third Year", img: "/mediateam/deva.jpg" },
+    ].map((member, index) => (
+      <motion.div
+        key={index}
+        whileHover={{ scale: 1.05 }}
+        className="flex flex-col items-center text-center group"
+      >
+        <div className="relative w-40 h-40 md:w-48 md:h-48 overflow-hidden shadow-lg transition-all duration-300 group-hover:shadow-[0_0_20px_rgba(220,38,38,0.8)]">
+          <img
+            src={member.img}
+            alt={member.name}
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <h3 className="mt-4 text-white text-base md:text-lg font-medium">
+          {member.name}
+        </h3>
+        <hr className="w-8 border-t-2 border-red-600 my-1" />
+        <p className="text-gray-300 text-sm">{member.subtitle}</p>
+      </motion.div>
+    ))}
+  </div>
+</motion.div>
+
+{/* Event Coordinators Section */}
+<motion.div
+  initial={{ opacity: 0, y: 50 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 1 }}
+  viewport={{ once: true }}
+  className="w-full mt-16 flex flex-col items-center mb-10"
+>
+  {/* Title */}
+  <h2 className="text-3xl md:text-4xl text-white font-regular uppercase tracking-widest mb-8">
+    Event Coordinators
+  </h2>
+
+  {/* Event Coordinators Grid */}
+  <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-6 gap-6 w-[92%] md:w-[85%]">
+    {[
+      { name: "Nikil M", subtitle: "Third Year", img: "/eventcoordinators/nikil.jpg" },
+      { name: "Abirami S", subtitle: "Third Year", img: "/eventcoordinators/abirami.jpg" },
+      { name: "Reena Devi P", subtitle: "Third Year", img: "/mediateam/reena.jpg" },
+      { name: "Sanjai Kumar K S", subtitle: "Third Year", img: "/eventcoordinators/sanjai.jpg" },
+      { name: "Muthu Selvi N", subtitle: "Third Year", img: "/eventcoordinators/muthu.jpg" },
+      { name: "Muthukumaran S", subtitle: "Third Year", img: "/eventcoordinators/muthukumaran.JPG" },
+      { name: "Avighnaa Thirumaran", subtitle: "Third Year", img: "/eventcoordinators/avighnaa.jpg" },
+      { name: "Vijay Srinivas R V", subtitle: "Third Year", img: "/eventcoordinators/vijay.jpg" },
+      { name: "Ranjith Kumar S", subtitle: "Third Year", img: "/eventcoordinators/ranjith.jpg" },
+      { name: "Praveen V", subtitle: "Third Year", img: "/eventcoordinators/praveen.jpg" },
+      { name: "Dafne Francina J", subtitle: "Third Year", img: "/eventcoordinators/dafne.jpg" },
+      { name: "Sankari R V", subtitle: "Third Year", img: "/eventcoordinators/sankari.jpg" },
+      
+    ].map((member, index) => (
+      <motion.div
+        key={index}
+        whileHover={{ scale: 1.05 }}
+        className="flex flex-col items-center text-center group"
+      >
+        <div className="relative w-32 h-32 md:w-36 md:h-36 overflow-hidden shadow-lg transition-all duration-300 group-hover:shadow-[0_0_20px_rgba(220,38,38,0.8)]">
+          <img
+            src={member.img}
+            alt={member.name}
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <h3 className="mt-2 md:mt-4 text-white text-sm md:text-base font-medium">
+          {member.name}
+        </h3>
+        <hr className="w-6 border-t-2 border-red-600 my-1" />
+        <p className="text-gray-300 text-xs md:text-sm">{member.subtitle}</p>
+      </motion.div>
+    ))}
+  </div>
+</motion.div>
 
     </div>
   );
